@@ -5,19 +5,24 @@
 
   Структура проєкту:
   viknadom/
-  ├── index.html          ← ця сторінка
+  ├── index.html            ← ця сторінка
   ├── services.html
   ├── portfolio.html
   ├── about.html
   ├── blog.html
   ├── contacts.html
   ├── css/
-  │   └── style.css       ← всі стилі
+  │   └── style.css         ← всі стилі
   ├── js/
-  │   └── main.js         ← весь JavaScript
+  │   ├── components.js     ← спільний header/footer (одне місце для змін)
+  │   └── main.js           ← анімації, бургер-меню, скрол
+  ├── data/
+  │   ├── portfolio.js      ← дані портфоліо (додав запис — з'явився на сайті)
+  │   └── blog.js           ← дані блогу (додав статтю — з'явилась на сайті)
   └── images/
       ├── logo.jpg
-      └── ...             ← фото проєктів тощо
+      ├── works/            ← фото виконаних робіт
+      └── blog/             ← зображення для статей блогу
 -->
 <html lang="uk">
 <head>
@@ -39,59 +44,11 @@
 <body>
 
 <!-- ══════════════════════════════════════════
-     HEADER — фіксована навігація
-     id="header" — JS знаходить цей елемент і додає клас .scrolled
+     HEADER + МОБІЛЬНЕ МЕНЮ
+     Вставляються автоматично з js/components.js
+     Змінювати навігацію → редагувати js/components.js
      ══════════════════════════════════════════ -->
-<header id="header">
-  <div class="container">
-    <nav class="nav-inner">
-
-      <!-- Логотип — посилання на головну -->
-      <a href="index.html" class="nav-logo">
-        <img src="images/logo.jpg" alt="ВікнаДім — логотип">
-      </a>
-
-      <!-- Навігаційні посилання -->
-      <ul class="nav-links">
-        <li><a href="index.html">Головна</a></li>
-        <li><a href="services.html">Послуги</a></li>
-        <li><a href="portfolio.html">Наші роботи</a></li>
-        <li><a href="about.html">Про нас</a></li>
-        <li><a href="blog.html">Блог</a></li>
-        <li><a href="contacts.html">Контакти</a></li>
-      </ul>
-
-      <!-- Права частина хедера: телефон + кнопка -->
-      <div class="nav-right">
-        <a class="nav-phone" href="tel:+380671234567">+38 (067) 123-45-67</a>
-        <a href="contacts.html" class="btn btn-primary nav-cta">Замовити</a>
-        <!-- Бургер: видимий тільки на мобільному (CSS display:none на десктопі) -->
-        <button id="burger" class="burger" aria-label="Меню">
-          <span class="burger-line"></span>
-          <span class="burger-line"></span>
-          <span class="burger-line"></span>
-        </button>
-      </div>
-
-    </nav>
-  </div>
-</header>
-
-<!-- Мобільне меню — розгортається при кліку на бургер -->
-<div id="mobileMenu" class="mobile-menu">
-  <ul>
-    <li><a href="index.html">Головна</a></li>
-    <li><a href="services.html">Послуги</a></li>
-    <li><a href="portfolio.html">Наші роботи</a></li>
-    <li><a href="about.html">Про нас</a></li>
-    <li><a href="blog.html">Блог</a></li>
-    <li><a href="contacts.html">Контакти</a></li>
-  </ul>
-  <div class="mobile-menu-bottom">
-    <a class="nav-phone" href="tel:+380671234567">+38 (067) 123-45-67</a>
-    <a href="contacts.html" class="btn btn-primary">Замовити</a>
-  </div>
-</div>
+<div id="site-header"></div>
 
 
 <!-- ══════════════════════════════════════════
@@ -295,28 +252,8 @@
       </div>
       <a href="portfolio.html" class="btn btn-outline">Усі проєкти</a>
     </div>
-    <div class="portfolio-grid">
-      <div class="port-item fade-up">
-        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&q=80" alt="Скляний фасад">
-        <div class="port-overlay"><div class="port-label"><h4>Скляний фасад ТЦ</h4><p>Алюміній · Структурне скління</p></div></div>
-      </div>
-      <div class="port-item fade-up">
-        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=700&q=80" alt="Вікна">
-        <div class="port-overlay"><div class="port-label"><h4>Панорамні вікна</h4><p>Металопластик · REHAU</p></div></div>
-      </div>
-      <div class="port-item fade-up">
-        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=80" alt="Перегородки">
-        <div class="port-overlay"><div class="port-label"><h4>Скляні перегородки</h4><p>Цільноскляні · Без рам</p></div></div>
-      </div>
-      <div class="port-item fade-up">
-        <img src="https://images.unsplash.com/photo-1609766856987-8ea9cec30bf4?w=700&q=80" alt="Тераса">
-        <div class="port-overlay"><div class="port-label"><h4>Розсувна тераса</h4><p>Алюміній · HST</p></div></div>
-      </div>
-      <div class="port-item fade-up">
-        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&q=80" alt="Штори">
-        <div class="port-overlay"><div class="port-label"><h4>Рулонні штори</h4><p>Сонцезахист · Авто</p></div></div>
-      </div>
-    </div>
+    <!-- Сітка робіт — заповнюється автоматично з data/portfolio.js -->
+    <div class="portfolio-grid" id="portfolio-grid"></div>
   </div>
 </section>
 
@@ -468,59 +405,38 @@
 
 
 <!-- ══════════════════════════════════════════
-     FOOTER
+     FOOTER — вставляється з js/components.js
      ══════════════════════════════════════════ -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="images/logo.jpg" alt="ВікнаДім">
-        <p>Виробник та монтажник металопластикових та алюмінієвих конструкцій, цільноскляних систем і сонцезахисту.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Послуги</h4>
-        <ul>
-          <li><a href="services.html">Металопластикові вікна</a></li>
-          <li><a href="services.html">Алюмінієві системи</a></li>
-          <li><a href="services.html">Скляні конструкції</a></li>
-          <li><a href="services.html">Сонцезахист</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Компанія</h4>
-        <ul>
-          <li><a href="about.html">Про нас</a></li>
-          <li><a href="portfolio.html">Наші роботи</a></li>
-          <li><a href="blog.html">Блог</a></li>
-          <li><a href="contacts.html">Контакти</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Контакти</h4>
-        <ul>
-          <li><a href="tel:+380671234567">+38 (067) 123-45-67</a></li>
-          <li><a href="mailto:info@viknadom.ua">info@viknadom.ua</a></li>
-          <li>вул. Прикладна, 12, Дніпро</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2025 ВікнаДім. Усі права захищені.</span>
-      <div class="footer-social">
-        <a href="#" aria-label="Facebook">fb</a>
-        <a href="#" aria-label="Instagram">ig</a>
-        <a href="#" aria-label="Telegram">tg</a>
-      </div>
-    </div>
-  </div>
-</footer>
+<div id="site-footer"></div>
 
 
 <!--
   JS підключаємо в самому кінці <body>.
-  Чому? Коли браузер доходить до цього рядка —
-  весь HTML вже завантажений і JS може знаходити елементи.
+  Порядок важливий:
+  1. components.js — вставляє header і footer в DOM
+  2. data/portfolio.js — завантажує масив PORTFOLIO
+  3. інлайн-скрипт — малює картки портфоліо з даних
+  4. main.js — анімації, бургер-меню, скрол
 -->
+<script src="js/components.js"></script>
+<script src="data/portfolio.js"></script>
+<script>
+  // Рендер прев'ю портфоліо на головній (перші 5 робіт)
+  const portfolioGrid = document.getElementById('portfolio-grid');
+  if (portfolioGrid && typeof PORTFOLIO !== 'undefined') {
+    portfolioGrid.innerHTML = PORTFOLIO.slice(0, 5).map(item => `
+      <div class="port-item fade-up">
+        <img src="${item.image}" alt="${item.title}">
+        <div class="port-overlay">
+          <div class="port-label">
+            <h4>${item.title}</h4>
+            <p>${item.tags}</p>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+</script>
 <script src="js/main.js"></script>
 
 </body>

@@ -1,0 +1,14 @@
+# Системні файли
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Редактори
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Логи
+*.log

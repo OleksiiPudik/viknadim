@@ -264,10 +264,30 @@
       }
       phoneInput.setCustomValidity('');
 
-      // Тут буде реальна відправка (fetch на сервер).
-      // Поки що показуємо повідомлення про успіх.
-      form.style.display = 'none';
-      success.style.display = 'block';
+      // Блокуємо кнопку під час відправки
+      const submitBtn = form.querySelector('.form-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Надсилаємо...';
+
+      // Відправка через Formspree
+      fetch('https://formspree.io/f/mqedgbwe', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      })
+      .then(function(response) {
+        if (response.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          throw new Error('Помилка відправки');
+        }
+      })
+      .catch(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Надіслати заявку';
+        alert('Не вдалося надіслати заявку. Спробуйте ще раз або зателефонуйте нам.');
+      });
     });
   }
 </script>

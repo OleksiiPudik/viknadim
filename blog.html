@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--
+  ВікнаДім — Блог
+  Файл: blog.html
+
+  Два рівні в одному файлі (JS-навігація):
+  1. Список статей (вертикально, найновіші вгорі)
+  2. Перегляд статті (заглавне фото + контент із фото/відео)
+
+  ══════════════════════════════════════════════
+  БАЖАНІ РОЗМІРИ ЗОБРАЖЕНЬ:
+
+  ◆ Заглавне фото статті (на картці та у статті):
+    → Рекомендований розмір: 1200×630 px (≈1.9:1)
+    → Мін. ширина: 800px, формат JPG/WebP, до 250 КБ
+
+  ◆ Фото всередині статті (між текстом):
+    → Рекомендований розмір: 1000×600 px (5:3) або довільний
+    → Мін. ширина: 700px, формат JPG/WebP, до 200 КБ
+  ══════════════════════════════════════════════
+-->
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог — ВікнаДім</title>
+  <meta name="description" content="Блог ВікнаДім — корисні статті про вікна, двері, балкони, фасади. Поради з вибору, порівняння матеріалів, новини.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<div id="site-header"></div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE HERO
+     ══════════════════════════════════════════ -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <div class="breadcrumbs" id="breadcrumbs">
+          <a href="index.html">Головна</a>
+          <span class="breadcrumbs-sep">/</span>
+          <span>Блог</span>
+        </div>
+        <div class="section-tag">Корисні статті</div>
+        <h1 id="pageTitle">Наш <span>блог</span></h1>
+        <p id="pageDesc">Поради з вибору вікон, порівняння матеріалів, огляди технологій та новини компанії.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     РІВЕНЬ 1: СПИСОК СТАТЕЙ
+     ══════════════════════════════════════════ -->
+<section class="blog-page" id="viewBlogList">
+  <div class="container">
+    <div class="blog-list" id="blogList"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     РІВЕНЬ 2: ПЕРЕГЛЯД СТАТТІ
+     ══════════════════════════════════════════ -->
+<section class="blog-article-page" id="viewArticle" style="display:none;">
+  <div class="container">
+    <div class="article-layout">
+      <article class="article-content" id="articleContent"></article>
+      <aside class="article-sidebar" id="articleSidebar"></aside>
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<div id="site-footer"></div>
+
+
+<!-- ══════════════════════════════════════════
+     СКРИПТИ
+     ══════════════════════════════════════════ -->
+<script src="js/components.js"></script>
+<script>
+/* ══════════════════════════════════════════════
+   ДАНІ БЛОГУ
+   ══════════════════════════════════════════════
+
+   ЯК ДОДАТИ СТАТТЮ:
+   ─────────────────
+   1. Скопіюйте блок { ... } нижче
+   2. Заповніть поля (id, title, excerpt, cover, date, author, tags)
+   3. У масиві content розмістіть блоки у потрібному порядку:
+      → { type: 'text', value: 'Текст абзацу...' }
+      → { type: 'heading', value: 'Заголовок розділу' }
+      → { type: 'image', src: 'images/blog/photo.jpg', alt: 'Опис фото' }
+      → { type: 'video', src: 'https://www.youtube.com/embed/VIDEO_ID' }
+   4. Збережіть файл — стаття з'явиться на сайті
+
+   ПОРЯДОК СОРТУВАННЯ: за полем date, найновіші вгорі.
+   ══════════════════════════════════════════════ */
+
+const ARTICLES = [
+  {
+    id: 'profili-rehau-veka-kbe',
+    title: 'Як обрати профіль для вікон: REHAU, Veka чи KBE?',
+    excerpt: 'Порівнюємо три найпопулярніші профільні системи за теплоізоляцією, ціною та довговічністю. Поради від наших технологів.',
+    /* Заглавне фото (1200×630 px) */
+    cover: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80',
+    date: '2025-01-15',
+    author: 'Команда ВікнаДім',
+    tags: ['вікна', 'профілі', 'поради'],
+    /* Контент статті — масив блоків у потрібному порядку */
+    content: [
+      { type: 'text', value: 'Вибір профільної системи — одне з найважливіших рішень при замовленні нових вікон. Від профілю залежить теплоізоляція, шумозахист, зовнішній вигляд та довговічність конструкції. Ми порівняли три найпопулярніші системи на українському ринку.' },
+      { type: 'heading', value: 'REHAU — німецька якість' },
+      { type: 'text', value: 'REHAU — один із найвідоміших брендів у світі віконних профілів. Компанія пропонує кілька ліній: Euro 60 (бюджетний), Brillant (середній клас) та Geneo (преміум з 6 камерами). Усі профілі мають гладку глянцеву поверхню, стійку до забруднень.' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1000&q=80', alt: 'Вікна REHAU в інтер\'єрі' },
+      { type: 'heading', value: 'Veka — надійність та доступність' },
+      { type: 'text', value: 'Veka — ще один німецький виробник із заводами в Україні. Профілі Veka відрізняються збільшеною товщиною стінок (клас А за EN 12608), що забезпечує підвищену жорсткість. Популярні серії: Euroline (60 мм), Softline (70 мм), Alphaline (90 мм).' },
+      { type: 'text', value: 'Головна перевага Veka — оптимальне співвідношення ціна/якість. Профілі Softline 70 мм забезпечують теплоізоляцію на рівні 0.94 м²·°C/Вт, що достатньо для більшості регіонів України.' },
+      { type: 'heading', value: 'KBE — економічний вибір' },
+      { type: 'text', value: 'KBE — бренд концерну profine (Німеччина). Профілі KBE виробляються з використанням рецептури greenline без свинцевих стабілізаторів, що робить їх екологічно безпечнішими. Лінійка включає: Engine (58 мм), Select (70 мм) та Expert (70 мм з 5 камерами).' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=80', alt: 'Сучасні вікна в приватному будинку' },
+      { type: 'heading', value: 'Підсумок: що обрати?' },
+      { type: 'text', value: 'Для преміум-сегменту рекомендуємо REHAU Geneo або Brillant — це найвищий рівень теплоізоляції та довговічності. Для оптимального балансу ціни та якості — Veka Softline. Для бюджетного варіанту — KBE Select або REHAU Euro 60.' },
+      { type: 'text', value: 'Незалежно від обраного профілю, зверніть увагу на якість монтажу — навіть найкращий профіль не покаже своїх можливостей при неправильному встановленні. Звертайтесь до ВікнаДім — ми працюємо з усіма трьома системами та гарантуємо професійний монтаж.' }
+    ]
+  },
+  {
+    id: 'formula-sklopaketa',
+    title: 'Енергоефективність вікон: що таке формула склопакета?',
+    excerpt: 'Розбираємось, що означають цифри 4-16-4 і як правильно обрати склопакет для вашого клімату.',
+    cover: 'https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=1200&q=80',
+    date: '2024-12-20',
+    author: 'Команда ВікнаДім',
+    tags: ['склопакети', 'енергоефективність'],
+    content: [
+      { type: 'text', value: 'Коли ви замовляєте вікна, менеджер може запитати: "Який склопакет бажаєте — однокамерний чи двокамерний? З і-склом чи мультифункціональним?" Щоб не розгубитись, розберемо основи.' },
+      { type: 'heading', value: 'Що означає формула склопакета?' },
+      { type: 'text', value: 'Формула склопакета описує його конструкцію. Наприклад, 4-16-4 означає: зовнішнє скло 4 мм, повітряна камера 16 мм, внутрішнє скло 4 мм. Загальна товщина — 24 мм. Це однокамерний склопакет.' },
+      { type: 'text', value: 'Двокамерний склопакет має три скла і дві камери. Типова формула: 4-10-4-10-4 (загальна товщина 32 мм). Більше камер — краща теплоізоляція, але й більша вага.' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1000&q=80', alt: 'Структура склопакета' },
+      { type: 'heading', value: 'Що таке і-скло та мультифункціональне скло?' },
+      { type: 'text', value: 'І-скло (Low-E) — скло з тонким напиленням оксидів металів. Це покриття відбиває теплове випромінювання назад у приміщення, зменшуючи тепловтрати на 40%. Однокамерний склопакет з і-склом (4-16-4і) зберігає тепло краще, ніж звичайний двокамерний.' },
+      { type: 'text', value: 'Мультифункціональне скло поєднує властивості і-скла та сонцезахисного покриття. Взимку зберігає тепло, влітку відбиває сонячну енергію. Ідеально для вікон, що виходять на південь.' },
+      { type: 'heading', value: 'Що обрати для Дніпра?' },
+      { type: 'text', value: 'Для клімату Дніпропетровської області рекомендуємо мінімум двокамерний склопакет з одним і-склом: 4-10-4-10-4і. Для максимальної енергоефективності — з аргоновим заповненням камер та мультифункціональним зовнішнім склом.' }
+    ]
+  },
+  {
+    id: 'aluminium-vs-metaplastic',
+    title: 'Алюмінієві чи металопластикові вікна: що обрати?',
+    excerpt: 'Детальне порівняння двох найпопулярніших матеріалів для віконних конструкцій: переваги, недоліки та ціни.',
+    cover: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80',
+    date: '2024-11-10',
+    author: 'Команда ВікнаДім',
+    tags: ['алюміній', 'металопластик', 'порівняння'],
+    content: [
+      { type: 'text', value: 'Це питання ми чуємо щодня. Обидва матеріали мають свої сильні сторони, і правильний вибір залежить від конкретної ситуації. Давайте розберемось детально.' },
+      { type: 'heading', value: 'Металопластикові вікна' },
+      { type: 'text', value: 'Металопластик (ПВХ з армуванням) — найпопулярніший матеріал для вікон в Україні. Основні переваги: відмінна теплоізоляція, доступна ціна, різноманітність кольорів, мінімальний догляд. Підходять для квартир, приватних будинків, офісів.' },
+      { type: 'text', value: 'Головні обмеження: максимальний розмір стулки до 1.5×2.2 м, вигорання кольору з часом (для ламінованих профілів), обмежена палітра RAL-кольорів.' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=80', alt: 'Алюмінієвий фасад будівлі' },
+      { type: 'heading', value: 'Алюмінієві вікна' },
+      { type: 'text', value: 'Алюміній — матеріал для великих конструкцій та сучасної архітектури. Переваги: можливість створення великих прольотів (до 3×3 м), тонкі рами (більше світла), будь-який колір RAL, абсолютна стійкість до вигорання та корозії, термін служби 50+ років.' },
+      { type: 'text', value: 'Недоліки: вища ціна (в 1.5-2 рази порівняно з ПВХ), нижча теплоізоляція (хоча сучасні системи з терморозривом вирішують цю проблему).' },
+      { type: 'heading', value: 'Наша рекомендація' },
+      { type: 'text', value: 'Для стандартних віконних прорізів у квартирах та будинках — металопластик. Для панорамного скління, великих вікон, фасадів, вітрин та комерційних об\'єктів — алюміній. Для розсувних терас — однозначно алюмінієві HST або PSK системи.' },
+      { type: 'text', value: 'Зверніться до нас за безкоштовною консультацією — ми підберемо оптимальне рішення саме для вашого проєкту.' }
+    ]
+  }
+];
+
+
+/* ══════════════════════════════════════════════
+   ЛОГІКА БЛОГУ
+   ══════════════════════════════════════════════ */
+
+const viewBlogList = document.getElementById('viewBlogList');
+const viewArticle = document.getElementById('viewArticle');
+const breadcrumbs = document.getElementById('breadcrumbs');
+const pageTitle = document.getElementById('pageTitle');
+const pageDesc = document.getElementById('pageDesc');
+
+
+/* ── Форматування дати ── */
+function formatDate(dateStr) {
+  const months = ['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'];
+  const d = new Date(dateStr);
+  return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+/* ── Приблизний час читання ── */
+function readTime(content) {
+  let words = 0;
+  content.forEach(block => {
+    if (block.type === 'text' || block.type === 'heading') {
+      words += block.value.split(/\s+/).length;
+    }
+  });
+  return Math.max(1, Math.round(words / 200));
+}
+
+
+/* ── Рендер списку статей ── */
+function renderBlogList() {
+  const sorted = [...ARTICLES].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const list = document.getElementById('blogList');
+
+  list.innerHTML = sorted.map(post => `
+    <a class="blog-card fade-up" href="#" data-article="${post.id}">
+      <div class="blog-card-img">
+        <img src="${post.cover}" alt="${post.title}">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-meta">
+          <span class="blog-card-date">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            ${formatDate(post.date)}
+          </span>
+          <span class="blog-card-read">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            ${readTime(post.content)} хв читання
+          </span>
+        </div>
+        <h3>${post.title}</h3>
+        <p>${post.excerpt}</p>
+        <div class="blog-card-tags">
+          ${post.tags.map(t => '<span class="blog-tag">' + t + '</span>').join('')}
+        </div>
+        <span class="blog-card-link">
+          Читати далі
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </a>
+  `).join('');
+
+  /* Клік по картці */
+  list.querySelectorAll('.blog-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      const id = this.dataset.article;
+      location.hash = id;
+    });
+  });
+}
+
+
+/* ── Рендер статті ── */
+function showArticle(articleId) {
+  const post = ARTICLES.find(a => a.id === articleId);
+  if (!post) { showBlogList(); return; }
+
+  /* Заголовок і хлібні крихти */
+  pageTitle.innerHTML = post.title;
+  pageDesc.textContent = '';
+  breadcrumbs.innerHTML = `
+    <a href="index.html">Головна</a>
+    <span class="breadcrumbs-sep">/</span>
+    <a href="#" id="backToBlog">Блог</a>
+    <span class="breadcrumbs-sep">/</span>
+    <span>${post.title}</span>
+  `;
+  document.getElementById('backToBlog').addEventListener('click', function(e) {
+    e.preventDefault();
+    location.hash = '';
+  });
+
+  /* Контент статті */
+  const article = document.getElementById('articleContent');
+  let html = '';
+
+  /* Заглавне фото */
+  html += '<div class="article-cover"><img src="' + post.cover + '" alt="' + post.title + '"></div>';
+
+  /* Мета-інфо під фото */
+  html += '<div class="article-meta">';
+  html += '<span class="article-meta-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' + formatDate(post.date) + '</span>';
+  html += '<span class="article-meta-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' + post.author + '</span>';
+  html += '<span class="article-meta-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' + readTime(post.content) + ' хв читання</span>';
+  html += '</div>';
+
+  /* Блоки контенту */
+  post.content.forEach(block => {
+    if (block.type === 'text') {
+      html += '<p>' + block.value + '</p>';
+    } else if (block.type === 'heading') {
+      html += '<h2>' + block.value + '</h2>';
+    } else if (block.type === 'image') {
+      html += '<figure class="article-figure"><img src="' + block.src + '" alt="' + (block.alt || '') + '">';
+      if (block.alt) html += '<figcaption>' + block.alt + '</figcaption>';
+      html += '</figure>';
+    } else if (block.type === 'video') {
+      html += '<div class="article-video"><iframe src="' + block.src + '" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe></div>';
+    }
+  });
+
+  article.innerHTML = html;
+
+  /* Сайдбар */
+  const sidebar = document.getElementById('articleSidebar');
+  let sideHtml = '';
+
+  /* Теги */
+  sideHtml += '<div class="sidebar-card">';
+  sideHtml += '<h4>Теги</h4>';
+  sideHtml += '<div class="sidebar-tags">' + post.tags.map(t => '<span class="blog-tag">' + t + '</span>').join('') + '</div>';
+  sideHtml += '</div>';
+
+  /* Інші статті */
+  const others = ARTICLES.filter(a => a.id !== post.id).slice(0, 3);
+  if (others.length) {
+    sideHtml += '<div class="sidebar-card">';
+    sideHtml += '<h4>Інші статті</h4>';
+    others.forEach(o => {
+      sideHtml += '<a href="#' + o.id + '" class="sidebar-post">';
+      sideHtml += '<img src="' + o.cover + '" alt="' + o.title + '">';
+      sideHtml += '<div><strong>' + o.title + '</strong><span>' + formatDate(o.date) + '</span></div>';
+      sideHtml += '</a>';
+    });
+    sideHtml += '</div>';
+  }
+
+  /* CTA */
+  sideHtml += '<div class="sidebar-card sidebar-cta">';
+  sideHtml += '<h4>Потрібна консультація?</h4>';
+  sideHtml += '<p>Зателефонуйте або залиште заявку — ми допоможемо з вибором.</p>';
+  sideHtml += '<a href="contacts.html" class="btn btn-primary" style="width:100%;text-align:center;">Зв\'язатись з нами</a>';
+  sideHtml += '</div>';
+
+  sidebar.innerHTML = sideHtml;
+
+  /* Перемикаємо вигляд */
+  viewBlogList.style.display = 'none';
+  viewArticle.style.display = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+/* ── Повернення до списку ── */
+function showBlogList() {
+  pageTitle.innerHTML = 'Наш <span>блог</span>';
+  pageDesc.textContent = 'Поради з вибору вікон, порівняння матеріалів, огляди технологій та новини компанії.';
+  breadcrumbs.innerHTML = `
+    <a href="index.html">Головна</a>
+    <span class="breadcrumbs-sep">/</span>
+    <span>Блог</span>
+  `;
+  viewArticle.style.display = 'none';
+  viewBlogList.style.display = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  requestAnimationFrame(initFadeUp);
+}
+
+
+/* ── Fade-up анімації ── */
+function initFadeUp() {
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    observer.observe(el);
+  });
+}
+
+
+/* ── Навігація через URL-хеш ── */
+function handleHash() {
+  const hash = location.hash.replace('#', '');
+  if (!hash) { showBlogList(); return; }
+  const post = ARTICLES.find(a => a.id === hash);
+  if (post) { showArticle(post.id); return; }
+  showBlogList();
+}
+
+
+/* ── Ініціалізація ── */
+renderBlogList();
+handleHash();
+window.addEventListener('hashchange', handleHash);
+</script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

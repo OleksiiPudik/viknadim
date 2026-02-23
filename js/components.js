@@ -62,7 +62,7 @@ function renderHeader() {
     <li><a href="contacts.html">Контакти</a></li>
   </ul>
   <div class="mobile-menu-bottom">
-    <a class="nav-phone" href="tel:+380671234567">+38 (096) 304-62-34</a>
+    <a class="nav-phone" href="tel:+380963046234">+38 (096) 304-62-34</a>
     <a href="contacts.html" class="btn btn-primary">Замовити</a>
   </div>
 </div>`;
@@ -85,14 +85,14 @@ function renderFooter() {
     <div class="footer-inner">
       <div class="footer-brand">
         <img src="images/logo.jpg" alt="ВікнаДім">
-        <p>Виробник та монтажник металопластикових та алюмінієвих конструкцій, цільноскляних систем і сонцезахисту.</p>
+        <p>Виробник, монтажник металопластикових та алюмінієвих конструкцій, цільноскляних систем, сонцезахисту.</p>
       </div>
       <div class="footer-col">
         <h4>Послуги</h4>
         <ul>
-          <li><a href="services.html">Металопластикові вікна</a></li>
+          <li><a href="services.html">Металопластикові конструкції</a></li>
           <li><a href="services.html">Алюмінієві системи</a></li>
-          <li><a href="services.html">Скляні конструкції</a></li>
+          <li><a href="services.html">ЦільноСкляні конструкції</a></li>
           <li><a href="services.html">Сонцезахист</a></li>
         </ul>
       </div>
@@ -108,9 +108,10 @@ function renderFooter() {
       <div class="footer-col">
         <h4>Контакти</h4>
         <ul>
-          <li><a href="tel:+380671234567">+38 (067) 123-45-67</a></li>
-          <li><a href="mailto:info@viknadom.ua">info@viknadom.ua</a></li>
-          <li>вул. Прикладна, 12, Дніпро</li>
+          <li><a href="tel:+380963046234">+38 (096) 304-62-34</a></li>
+          <li><a href="tel:+380996036351">+38 (099) 603-63-51</a></li>
+          <li><a href="mailto:oknadom.dp@gmail.com">oknadom.dp@gmail.com</a></li>
+          <li>пр. Слобожанський 95, Дніпро</li>
         </ul>
       </div>
     </div>

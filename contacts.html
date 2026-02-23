@@ -203,6 +203,10 @@
       let digits = this.value.replace(/\D/g, '').slice(0, 10);
       let formatted = formatPhone(digits);
       this.value = formatted;
+      // Скидаємо помилку валідації при введенні
+      if (digits.length === 10) {
+        this.setCustomValidity('');
+      }
     });
 
     // Блокуємо будь-які нецифрові клавіші (крім навігаційних)
@@ -219,13 +223,37 @@
       let paste = (e.clipboardData || window.clipboardData).getData('text');
       let digits = paste.replace(/\D/g, '').slice(0, 10);
       this.value = formatPhone(digits);
+      // Скидаємо помилку якщо вставлено повний номер
+      if (digits.length === 10) {
+        this.setCustomValidity('');
+      }
     });
   }
 
   /* ── Валідація та відправка форми ── */
+  const nameInput = document.getElementById('name');
+
+  // Скидаємо помилку імені при введенні
+  if (nameInput) {
+    nameInput.addEventListener('input', function() {
+      if (/[a-zA-Zа-яА-ЯіІїЇєЄґҐ]/.test(this.value.trim())) {
+        this.setCustomValidity('');
+      }
+    });
+  }
+
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+
+      // Перевіряємо що ім'я містить хоча б одну літеру
+      let nameVal = nameInput.value.trim();
+      if (!/[a-zA-Zа-яА-ЯіІїЇєЄґҐ]/.test(nameVal)) {
+        nameInput.setCustomValidity('Введіть ваше ім\'я (має містити літери)');
+        nameInput.reportValidity();
+        return;
+      }
+      nameInput.setCustomValidity('');
 
       // Перевіряємо що телефон містить рівно 10 цифр
       let digits = phoneInput.value.replace(/\D/g, '');

@@ -39,7 +39,7 @@ function renderHeader() {
       </ul>
 
       <div class="nav-right">
-        <a class="nav-phone" href="tel:+380671234567">+38 (067) 123-45-67</a>
+        <a class="nav-phone" href="tel:+380963046234">+38 (096) 304-62-34</a>
         <a href="contacts.html" class="btn btn-primary nav-cta">Замовити</a>
         <button id="burger" class="burger" aria-label="Меню">
           <span class="burger-line"></span>
@@ -62,7 +62,7 @@ function renderHeader() {
     <li><a href="contacts.html">Контакти</a></li>
   </ul>
   <div class="mobile-menu-bottom">
-    <a class="nav-phone" href="tel:+380671234567">+38 (067) 123-45-67</a>
+    <a class="nav-phone" href="tel:+380671234567">+38 (096) 304-62-34</a>
     <a href="contacts.html" class="btn btn-primary">Замовити</a>
   </div>
 </div>`;

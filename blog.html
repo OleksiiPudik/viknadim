@@ -306,6 +306,21 @@ function showArticle(articleId) {
     }
   });
 
+  /* Інші статті — під основним контентом */
+  const others = ARTICLES.filter(a => a.id !== post.id).slice(0, 3);
+  if (others.length) {
+    html += '<div class="related-articles">';
+    html += '<h3 class="related-title">Інші статті</h3>';
+    html += '<div class="related-list">';
+    others.forEach(o => {
+      html += '<a href="#' + o.id + '" class="related-card">';
+      html += '<img src="' + o.cover + '" alt="' + o.title + '">';
+      html += '<div class="related-card-body"><strong>' + o.title + '</strong><span>' + formatDate(o.date) + '</span></div>';
+      html += '</a>';
+    });
+    html += '</div></div>';
+  }
+
   article.innerHTML = html;
 
   /* Сайдбар */
@@ -317,20 +332,6 @@ function showArticle(articleId) {
   sideHtml += '<h4>Теги</h4>';
   sideHtml += '<div class="sidebar-tags">' + post.tags.map(t => '<span class="blog-tag">' + t + '</span>').join('') + '</div>';
   sideHtml += '</div>';
-
-  /* Інші статті */
-  const others = ARTICLES.filter(a => a.id !== post.id).slice(0, 3);
-  if (others.length) {
-    sideHtml += '<div class="sidebar-card">';
-    sideHtml += '<h4>Інші статті</h4>';
-    others.forEach(o => {
-      sideHtml += '<a href="#' + o.id + '" class="sidebar-post">';
-      sideHtml += '<img src="' + o.cover + '" alt="' + o.title + '">';
-      sideHtml += '<div><strong>' + o.title + '</strong><span>' + formatDate(o.date) + '</span></div>';
-      sideHtml += '</a>';
-    });
-    sideHtml += '</div>';
-  }
 
   /* CTA */
   sideHtml += '<div class="sidebar-card sidebar-cta">';

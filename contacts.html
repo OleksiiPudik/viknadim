@@ -118,7 +118,7 @@
             </div>
             <div class="form-group">
               <label for="phone">Телефон</label>
-              <input type="tel" id="phone" name="phone" placeholder="+38 (0__) ___-__-__" required>
+              <input type="tel" id="phone" name="phone" placeholder="(000) 000-00-00" required maxlength="15">
             </div>
             <div class="form-group">
               <label for="service">Що вас цікавить?</label>
@@ -182,16 +182,61 @@
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 
-<!-- JS для форми: валідація та відправка -->
+<!-- JS для форми: маска телефону, валідація, відправка -->
 <script>
   const form = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');
+  const phoneInput = document.getElementById('phone');
 
+  /* ── Маска телефону: (000) 000-00-00 ── */
+  function formatPhone(digits) {
+    let d = digits;
+    if (d.length === 0) return '';
+    if (d.length <= 3) return '(' + d;
+    if (d.length <= 6) return '(' + d.slice(0,3) + ') ' + d.slice(3);
+    if (d.length <= 8) return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+    return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6,8) + '-' + d.slice(8,10);
+  }
+
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function() {
+      let digits = this.value.replace(/\D/g, '').slice(0, 10);
+      let formatted = formatPhone(digits);
+      this.value = formatted;
+    });
+
+    // Блокуємо будь-які нецифрові клавіші (крім навігаційних)
+    phoneInput.addEventListener('keydown', function(e) {
+      const allowed = ['Backspace','Delete','ArrowLeft','ArrowRight','Tab','Home','End'];
+      if (allowed.includes(e.key)) return;
+      if (e.ctrlKey || e.metaKey) return; // Ctrl+C, Ctrl+V тощо
+      if (!/^\d$/.test(e.key)) e.preventDefault();
+    });
+
+    // Обробка вставки — залишаємо тільки цифри
+    phoneInput.addEventListener('paste', function(e) {
+      e.preventDefault();
+      let paste = (e.clipboardData || window.clipboardData).getData('text');
+      let digits = paste.replace(/\D/g, '').slice(0, 10);
+      this.value = formatPhone(digits);
+    });
+  }
+
+  /* ── Валідація та відправка форми ── */
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Тут буде реальна відправка (наприклад через fetch на сервер).
+      // Перевіряємо що телефон містить рівно 10 цифр
+      let digits = phoneInput.value.replace(/\D/g, '');
+      if (digits.length !== 10) {
+        phoneInput.setCustomValidity('Введіть 10 цифр номера телефону');
+        phoneInput.reportValidity();
+        return;
+      }
+      phoneInput.setCustomValidity('');
+
+      // Тут буде реальна відправка (fetch на сервер).
       // Поки що показуємо повідомлення про успіх.
       form.style.display = 'none';
       success.style.display = 'block';

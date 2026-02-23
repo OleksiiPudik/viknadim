@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<!--
+  ВікнаДім — Портфоліо
+  Файл: portfolio.html
+
+  Три рівні в одному файлі (JS-навігація):
+  1. Категорії (7 розділів із заглавними фото)
+  2. Список проєктів розділу (картки з фото + короткий опис)
+  3. Детальна сторінка проєкту (галерея до 20 фото + опис)
+
+  ══════════════════════════════════════════════
+  БАЖАНІ РОЗМІРИ ФОТО:
+
+  ◆ Рівень 1 — Заглавні фото категорій (categories-grid):
+    → Дві фото на картку категорії
+    → Рекомендований розмір: 600×400 px (3:2)
+    → Мін. ширина: 400px, формат JPG/WebP, до 150 КБ
+
+  ◆ Рівень 2 — Картки проєктів (projects-list):
+    → Одне фото на картку проєкту
+    → Рекомендований розмір: 800×530 px (3:2)
+    → Мін. ширина: 600px, формат JPG/WebP, до 200 КБ
+
+  ◆ Рівень 3 — Галерея проєкту (project-page):
+    → Заглавне фото (велике): 1200×750 px (16:10)
+    → Мініатюри: 400×400 px (1:1)
+    → Для лайтбоксу: 1600×1000 px (бажано)
+    → Формат JPG/WebP, заглавне до 300 КБ, інші до 200 КБ
+    → Максимум 20 фото на проєкт
+  ══════════════════════════════════════════════
+-->
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Портфоліо — ВікнаДім</title>
+  <meta name="description" content="Реалізовані проєкти ВікнаДім — вікна, двері, балкони, фасади, скляні конструкції та сонцезахист. Фото та описи наших робіт.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<div id="site-header"></div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE HERO — заголовок сторінки
+     ══════════════════════════════════════════ -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <div class="breadcrumbs" id="breadcrumbs">
+          <a href="index.html">Головна</a>
+          <span class="breadcrumbs-sep">/</span>
+          <span>Портфоліо</span>
+        </div>
+        <div class="section-tag">Реалізовані проєкти</div>
+        <h1 id="pageTitle">Наше <span>портфоліо</span></h1>
+        <p id="pageDesc">Перегляньте наші реалізовані проєкти — від приватних помешкань до масштабних комерційних об'єктів.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     РІВЕНЬ 1: СІТКА КАТЕГОРІЙ
+     ══════════════════════════════════════════ -->
+<section class="portfolio-page" id="viewCategories">
+  <div class="container">
+    <div class="categories-grid" id="categoriesGrid"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     РІВЕНЬ 2: СПИСОК ПРОЄКТІВ КАТЕГОРІЇ
+     ══════════════════════════════════════════ -->
+<section class="projects-page" id="viewProjects" style="display:none;">
+  <div class="container">
+    <div class="projects-list" id="projectsList"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     РІВЕНЬ 3: ДЕТАЛЬНА СТОРІНКА ПРОЄКТУ
+     ══════════════════════════════════════════ -->
+<section class="project-page" id="viewProject" style="display:none;">
+  <div class="container">
+    <div class="project-layout">
+      <div class="project-gallery-area">
+        <!-- Заглавне фото -->
+        <div class="project-main-img" id="projectMainImg"></div>
+        <!-- Мініатюри -->
+        <div class="project-gallery" id="projectGallery"></div>
+        <!-- Опис -->
+        <div class="project-description" id="projectDescription"></div>
+      </div>
+      <!-- Сайдбар -->
+      <div class="project-sidebar">
+        <div class="project-details-card" id="projectDetails"></div>
+        <a href="contacts.html" class="btn btn-primary" style="width:100%;text-align:center;">Замовити подібне</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ЛАЙТБОКС — перегляд фото на повний екран
+     ══════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-overlay"></div>
+  <button class="lightbox-close" aria-label="Закрити">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" aria-label="Попереднє фото">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div class="lightbox-img-wrap">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
+  <button class="lightbox-arrow lightbox-next" aria-label="Наступне фото">
+    <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+  </button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+
+<!-- Footer -->
+<div id="site-footer"></div>
+
+
+<!-- ══════════════════════════════════════════
+     СКРИПТИ
+     ══════════════════════════════════════════ -->
+<script src="js/components.js"></script>
+<script>
+/* ══════════════════════════════════════════════
+   ДАНІ ПОРТФОЛІО
+   ══════════════════════════════════════════════
+
+   ЯК РЕДАГУВАТИ:
+   ─────────────
+   1. КАТЕГОРІЇ — масив CATEGORIES нижче.
+      → Змініть img1/img2 щоб встановити заглавні фото розділу.
+      → Рекомендований розмір фото: 600×400 px (3:2)
+
+   2. ПРОЄКТИ — масив PROJECTS нижче.
+      → Додайте новий об'єкт щоб додати проєкт.
+      → cover — фото для картки (800×530 px, 3:2)
+      → images — масив фото для галереї (до 20 шт, 1600×1000 px)
+      → date — дата для сортування (YYYY-MM-DD), найновіші попереду
+
+   3. ФОТО — покладіть у відповідну підпапку images/portfolio/
+      Наприклад: images/portfolio/windows/project1-cover.jpg
+   ══════════════════════════════════════════════ */
+
+const CATEGORIES = [
+  {
+    id: 'windows',
+    title: 'Вікна',
+    description: 'Металопластикові та дерев\'яні вікна для квартир і будинків',
+    /* Заглавні фото категорії — замініть на свої (600×400 px) */
+    img1: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80',
+    img2: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80'
+  },
+  {
+    id: 'doors',
+    title: 'Двері',
+    description: 'Вхідні та міжкімнатні двері, портальні системи',
+    img1: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=600&q=80',
+    img2: 'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&q=80'
+  },
+  {
+    id: 'balconies',
+    title: 'Балкони та лоджії',
+    description: 'Засклення, утеплення, обшивка балконів та лоджій',
+    img1: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80',
+    img2: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80'
+  },
+  {
+    id: 'facades',
+    title: 'Фасади та перегородки',
+    description: 'Алюмінієві фасади, офісні перегородки, вітражі',
+    img1: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80',
+    img2: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80'
+  },
+  {
+    id: 'sliding',
+    title: 'Розсувні системи',
+    description: 'HST, PSK та паралельно-розсувні конструкції',
+    img1: 'https://images.unsplash.com/photo-1609766856987-8ea9cec30bf4?w=600&q=80',
+    img2: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80'
+  },
+  {
+    id: 'glass',
+    title: 'Цільноскляні системи',
+    description: 'Безрамне скління, скляні огорожі, душові',
+    img1: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80',
+    img2: 'https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?w=600&q=80'
+  },
+  {
+    id: 'sunprotect',
+    title: 'Сонцезахист',
+    description: 'Жалюзі, ролети, маркізи, рулонні штори',
+    img1: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80',
+    img2: 'https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=600&q=80'
+  }
+];
+
+
+const PROJECTS = [
+  /* ── Вікна ── */
+  {
+    id: 'win-01',
+    category: 'windows',
+    title: 'Панорамні вікна в котеджі',
+    summary: 'Встановлення панорамних вікон REHAU з енергозберігаючим склопакетом.',
+    description: 'Повна заміна вікон у приватному котеджі на панорамні конструкції REHAU Geneo. Встановлено 12 віконних блоків з двокамерними енергозберігаючими склопакетами. Підвіконня з HPL-пластику.',
+    city: 'Дніпро',
+    year: '2024',
+    date: '2024-11-15',
+    /* Фото картки проєкту (800×530 px) */
+    cover: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
+    /* Фото галереї (до 20 шт, 1600×1000 px для лайтбоксу) */
+    images: [
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80'
+    ]
+  },
+  {
+    id: 'win-02',
+    category: 'windows',
+    title: 'Вікна в квартирі з шумоізоляцією',
+    summary: 'Металопластикові вікна з посиленою шумоізоляцією для квартири.',
+    description: 'Заміна старих вікон на металопластикові REHAU Brillant з триплекс-склопакетом для максимальної шумоізоляції. Квартира на 3 поверсі біля жвавої дороги — після заміни рівень шуму знизився на 42 дБ.',
+    city: 'Дніпро',
+    year: '2024',
+    date: '2024-09-20',
+    cover: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80'
+    ]
+  },
+
+  /* ── Двері ── */
+  {
+    id: 'door-01',
+    category: 'doors',
+    title: 'Вхідні двері з терморозривом',
+    summary: 'Алюмінієві вхідні двері з терморозривом для приватного будинку.',
+    description: 'Встановлення вхідних алюмінієвих дверей Schüco ADS із терморозривом. Система забезпечує відмінну теплоізоляцію та зламостійкість класу RC3. Фурнітура з електронним доступом.',
+    city: 'Київ',
+    year: '2024',
+    date: '2024-10-05',
+    cover: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=800&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=1600&q=80',
+      'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=1600&q=80'
+    ]
+  },
+
+  /* ── Балкони та лоджії ── */
+  {
+    id: 'balc-01',
+    category: 'balconies',
+    title: 'Засклення балкона з виносом',
+    summary: 'Тепле засклення балкона з виносом підвіконня та обшивкою.',
+    description: 'Комплексне засклення балкона: тепле засклення REHAU Euro 60 з виносом підвіконня на 30 см, внутрішня обшивка пластиковою вагонкою, утеплення пінополістиролом 50 мм. Площа балкона 6 м².',
+    city: 'Дніпро',
+    year: '2024',
+    date: '2024-08-12',
+    cover: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80'
+    ]
+  },
+
+  /* ── Фасади та перегородки ── */
+  {
+    id: 'fac-01',
+    category: 'facades',
+    title: 'Скляний фасад торгового центру',
+    summary: 'Алюмінієвий фасад зі структурним склінням для ТЦ.',
+    description: 'Проєктування та монтаж структурного фасаду площею 480 м² для торгового центру. Алюмінієва система Aluprof MB-SR50N зі структурним склінням. Склопакети з сонцезахисним покриттям.',
+    city: 'Дніпро',
+    year: '2024',
+    date: '2024-07-20',
+    cover: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&q=80',
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80'
+    ]
+  },
+
+  /* ── Розсувні системи ── */
+  {
+    id: 'slid-01',
+    category: 'sliding',
+    title: 'Розсувна тераса HST',
+    summary: 'Підйомно-розсувна система HST для виходу на терасу.',
+    description: 'Встановлення підйомно-розсувної системи HST Schüco ASS 70.HI. Прохід шириною 4,5 м з панорамним видом на сад. Двокамерний склопакет з мультифункціональним покриттям.',
+    city: 'Запоріжжя',
+    year: '2024',
+    date: '2024-06-10',
+    cover: 'https://images.unsplash.com/photo-1609766856987-8ea9cec30bf4?w=800&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1609766856987-8ea9cec30bf4?w=1600&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=80'
+    ]
+  },
+
+  /* ── Цільноскляні системи ── */
+  {
+    id: 'glass-01',
+    category: 'glass',
+    title: 'Скляні перегородки в офісі',
+    summary: 'Цільноскляні перегородки для офісного простору.',
+    description: 'Монтаж цільноскляних перегородок у офісі площею 200 м². Загартоване скло 10 мм, фурнітура з нержавіючої сталі, верхній рейковий кріплення. Перегородки забезпечують візуальну відкритість та звукоізоляцію до 38 дБ.',
+    city: 'Дніпро',
+    year: '2023',
+    date: '2023-12-15',
+    cover: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80',
+      'https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?w=1600&q=80'
+    ]
+  },
+
+  /* ── Сонцезахист ── */
+  {
+    id: 'sun-01',
+    category: 'sunprotect',
+    title: 'Рулонні штори в квартирі',
+    summary: 'Встановлення рулонних штор день-ніч для всієї квартири.',
+    description: 'Комплексне оснащення 3-кімнатної квартири рулонними шторами день-ніч. 7 віконних блоків, тканина з пиловідштовхувальним покриттям. Кольори підібрані під інтер\'єр замовника.',
+    city: 'Харків',
+    year: '2023',
+    date: '2023-11-20',
+    cover: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=80',
+      'https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=1600&q=80'
+    ]
+  }
+];
+
+
+/* ══════════════════════════════════════════════
+   ЛОГІКА ПОРТФОЛІО
+   ══════════════════════════════════════════════ */
+
+const viewCategories = document.getElementById('viewCategories');
+const viewProjects = document.getElementById('viewProjects');
+const viewProject = document.getElementById('viewProject');
+const breadcrumbs = document.getElementById('breadcrumbs');
+const pageTitle = document.getElementById('pageTitle');
+const pageDesc = document.getElementById('pageDesc');
+
+
+/* ── Рендер категорій ── */
+function renderCategories() {
+  const grid = document.getElementById('categoriesGrid');
+  grid.innerHTML = CATEGORIES.map(cat => {
+    const count = PROJECTS.filter(p => p.category === cat.id).length;
+    return `
+      <a class="category-card fade-up" href="#" data-category="${cat.id}">
+        <div class="category-card-photos">
+          <div class="category-card-photo"><img src="${cat.img1}" alt="${cat.title}"></div>
+          <div class="category-card-photo"><img src="${cat.img2}" alt="${cat.title}"></div>
+          <div class="category-arrow">
+            <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+          </div>
+        </div>
+        <div class="category-card-body">
+          <div class="category-card-info">
+            <h3>${cat.title}</h3>
+            <p>${cat.description}</p>
+          </div>
+          <div class="category-count">
+            <strong>${count}</strong>
+            <span>проєктів</span>
+          </div>
+        </div>
+      </a>
+    `;
+  }).join('');
+
+  /* Клік по категорії */
+  grid.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      showProjects(this.dataset.category);
+    });
+  });
+}
+
+
+/* ── Рендер списку проєктів категорії ── */
+function showProjects(categoryId) {
+  const cat = CATEGORIES.find(c => c.id === categoryId);
+  if (!cat) return;
+
+  /* Сортуємо за датою — найновіші попереду */
+  const projects = PROJECTS
+    .filter(p => p.category === categoryId)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  /* Оновлюємо заголовок і хлібні крихти */
+  pageTitle.innerHTML = cat.title + ' — <span>проєкти</span>';
+  pageDesc.textContent = cat.description;
+  breadcrumbs.innerHTML = `
+    <a href="index.html">Головна</a>
+    <span class="breadcrumbs-sep">/</span>
+    <a href="#" id="backToCategories">Портфоліо</a>
+    <span class="breadcrumbs-sep">/</span>
+    <span>${cat.title}</span>
+  `;
+  document.getElementById('backToCategories').addEventListener('click', function(e) {
+    e.preventDefault();
+    showCategories();
+  });
+
+  /* Рендеримо картки */
+  const list = document.getElementById('projectsList');
+  list.innerHTML = projects.map(p => `
+    <a class="project-card fade-up" href="#" data-project="${p.id}">
+      <div class="project-card-img">
+        <img src="${p.cover}" alt="${p.title}">
+      </div>
+      <div class="project-card-body">
+        <h3>${p.title}</h3>
+        <p>${p.summary}</p>
+        <div class="project-meta">
+          <span class="project-meta-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            ${p.city}
+          </span>
+          <span class="project-meta-item">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            ${p.year}
+          </span>
+        </div>
+        <span class="project-card-link">
+          Детальніше
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </a>
+  `).join('');
+
+  /* Клік по проєкту */
+  list.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      showProject(this.dataset.project);
+    });
+  });
+
+  /* Перемикаємо вигляд */
+  viewCategories.style.display = 'none';
+  viewProject.style.display = 'none';
+  viewProjects.style.display = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  /* Анімації fade-up */
+  requestAnimationFrame(initFadeUp);
+}
+
+
+/* ── Рендер деталей проєкту ── */
+function showProject(projectId) {
+  const proj = PROJECTS.find(p => p.id === projectId);
+  if (!proj) return;
+  const cat = CATEGORIES.find(c => c.id === proj.category);
+
+  /* Заголовок і хлібні крихти */
+  pageTitle.innerHTML = proj.title;
+  pageDesc.textContent = '';
+  breadcrumbs.innerHTML = `
+    <a href="index.html">Головна</a>
+    <span class="breadcrumbs-sep">/</span>
+    <a href="#" id="backToCategories2">Портфоліо</a>
+    <span class="breadcrumbs-sep">/</span>
+    <a href="#" id="backToProjects" data-cat="${proj.category}">${cat ? cat.title : ''}</a>
+    <span class="breadcrumbs-sep">/</span>
+    <span>${proj.title}</span>
+  `;
+  document.getElementById('backToCategories2').addEventListener('click', function(e) {
+    e.preventDefault();
+    showCategories();
+  });
+  document.getElementById('backToProjects').addEventListener('click', function(e) {
+    e.preventDefault();
+    showProjects(this.dataset.cat);
+  });
+
+  /* Заглавне фото */
+  const mainImgWrap = document.getElementById('projectMainImg');
+  mainImgWrap.innerHTML = `<img src="${proj.images[0]}" alt="${proj.title}" data-index="0" class="clickable-img">`;
+
+  /* Мініатюри */
+  const gallery = document.getElementById('projectGallery');
+  gallery.innerHTML = proj.images.map((img, i) => `
+    <div class="gallery-thumb${i === 0 ? ' active' : ''}" data-index="${i}">
+      <img src="${img}" alt="${proj.title} — фото ${i + 1}">
+    </div>
+  `).join('');
+
+  /* Клік по мініатюрі — змінити заглавне фото */
+  gallery.querySelectorAll('.gallery-thumb').forEach(thumb => {
+    thumb.addEventListener('click', function() {
+      const idx = parseInt(this.dataset.index);
+      mainImgWrap.innerHTML = `<img src="${proj.images[idx]}" alt="${proj.title}" data-index="${idx}" class="clickable-img">`;
+      gallery.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      /* Клік по заглавному — відкрити лайтбокс */
+      mainImgWrap.querySelector('.clickable-img').addEventListener('click', function() {
+        openLightbox(proj.images, idx);
+      });
+    });
+  });
+
+  /* Клік по заглавному фото — відкрити лайтбокс */
+  mainImgWrap.querySelector('.clickable-img').addEventListener('click', function() {
+    openLightbox(proj.images, 0);
+  });
+
+  /* Клік по мініатюрам — лайтбокс */
+  gallery.querySelectorAll('.gallery-thumb').forEach(thumb => {
+    thumb.addEventListener('dblclick', function() {
+      openLightbox(proj.images, parseInt(this.dataset.index));
+    });
+  });
+
+  /* Опис */
+  document.getElementById('projectDescription').innerHTML = `
+    <h2>${proj.title}</h2>
+    <p>${proj.description}</p>
+  `;
+
+  /* Сайдбар */
+  document.getElementById('projectDetails').innerHTML = `
+    <h4>Деталі проєкту</h4>
+    <div class="detail-row"><span class="detail-label">Місто</span><span class="detail-value">${proj.city}</span></div>
+    <div class="detail-row"><span class="detail-label">Рік</span><span class="detail-value">${proj.year}</span></div>
+    <div class="detail-row"><span class="detail-label">Категорія</span><span class="detail-value">${cat ? cat.title : ''}</span></div>
+    <div class="detail-row"><span class="detail-label">Фото</span><span class="detail-value">${proj.images.length}</span></div>
+  `;
+
+  /* Перемикаємо вигляд */
+  viewCategories.style.display = 'none';
+  viewProjects.style.display = 'none';
+  viewProject.style.display = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+/* ── Повернення до категорій ── */
+function showCategories() {
+  pageTitle.innerHTML = 'Наше <span>портфоліо</span>';
+  pageDesc.textContent = 'Перегляньте наші реалізовані проєкти — від приватних помешкань до масштабних комерційних об\'єктів.';
+  breadcrumbs.innerHTML = `
+    <a href="index.html">Головна</a>
+    <span class="breadcrumbs-sep">/</span>
+    <span>Портфоліо</span>
+  `;
+  viewProjects.style.display = 'none';
+  viewProject.style.display = 'none';
+  viewCategories.style.display = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  requestAnimationFrame(initFadeUp);
+}
+
+
+/* ══════════════════════════════════════════════
+   ЛАЙТБОКС
+   ══════════════════════════════════════════════ */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCounter = document.getElementById('lightboxCounter');
+let lbImages = [];
+let lbIndex = 0;
+
+function openLightbox(images, startIndex) {
+  lbImages = images;
+  lbIndex = startIndex;
+  showLightboxImage();
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function showLightboxImage() {
+  lightboxImg.src = lbImages[lbIndex];
+  lightboxCounter.textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+  /* Ховаємо стрілки якщо одне фото */
+  document.querySelector('.lightbox-prev').style.display = lbImages.length > 1 ? '' : 'none';
+  document.querySelector('.lightbox-next').style.display = lbImages.length > 1 ? '' : 'none';
+}
+
+function lbPrev() {
+  lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+  showLightboxImage();
+}
+
+function lbNext() {
+  lbIndex = (lbIndex + 1) % lbImages.length;
+  showLightboxImage();
+}
+
+/* Закриття по оверлею або хрестику */
+lightbox.querySelector('.lightbox-overlay').addEventListener('click', closeLightbox);
+lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+lightbox.querySelector('.lightbox-prev').addEventListener('click', lbPrev);
+lightbox.querySelector('.lightbox-next').addEventListener('click', lbNext);
+
+/* Клавіатура */
+document.addEventListener('keydown', function(e) {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbPrev();
+  if (e.key === 'ArrowRight') lbNext();
+});
+
+/* Свайп на мобільних */
+(function() {
+  let startX = 0;
+  const imgWrap = lightbox.querySelector('.lightbox-img-wrap');
+  imgWrap.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  imgWrap.addEventListener('touchend', function(e) {
+    const diff = e.changedTouches[0].clientX - startX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) lbPrev(); else lbNext();
+    }
+  }, { passive: true });
+})();
+
+
+/* ══════════════════════════════════════════════
+   FADE-UP АНІМАЦІЇ (для динамічно доданих елементів)
+   ══════════════════════════════════════════════ */
+function initFadeUp() {
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    observer.observe(el);
+  });
+}
+
+
+/* ══════════════════════════════════════════════
+   НАВІГАЦІЯ ЧЕРЕЗ URL-ХЕШ
+   Підтримка прямих посилань:
+   portfolio.html#windows → розділ "Вікна"
+   portfolio.html#win-01  → проєкт "Панорамні вікна в котеджі"
+   ══════════════════════════════════════════════ */
+function handleHash() {
+  const hash = location.hash.replace('#', '');
+  if (!hash) {
+    showCategories();
+    return;
+  }
+  /* Шукаємо категорію */
+  const cat = CATEGORIES.find(c => c.id === hash);
+  if (cat) {
+    showProjects(cat.id);
+    return;
+  }
+  /* Шукаємо проєкт */
+  const proj = PROJECTS.find(p => p.id === hash);
+  if (proj) {
+    showProject(proj.id);
+    return;
+  }
+  /* Нічого не знайдено — показуємо категорії */
+  showCategories();
+}
+
+
+/* ── Ініціалізація ── */
+renderCategories();
+handleHash();
+window.addEventListener('hashchange', handleHash);
+</script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

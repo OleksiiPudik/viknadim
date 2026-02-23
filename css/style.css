@@ -1656,3 +1656,212 @@ footer {
   .project-details-card { display: block; }
   .project-nav { grid-template-columns: 1fr; }
 }
+
+
+/* ============================================================
+   СТОРІНКА КОНТАКТІВ — contacts.html
+   ============================================================ */
+
+
+/* ─────────────────────────────────────────────
+   18. КОНТАКТИ: ЛЕЙАУТ (інфо + форма)
+   ───────────────────────────────────────────── */
+.contacts-page { padding: 80px 0; background: var(--white); }
+
+.contacts-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ─── Контактні картки (ліва колонка) ─── */
+.contacts-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contact-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 24px;
+  background: var(--bg-light);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all var(--trans);
+}
+.contact-card:hover {
+  border-color: rgba(76,182,232,0.25);
+  box-shadow: var(--shadow);
+}
+.contact-card-icon {
+  width: 48px; height: 48px;
+  background: var(--blue-light);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact-card-icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--blue); fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.contact-card-body h3 {
+  font-family: var(--font-head);
+  font-size: 14px; font-weight: 500;
+  color: var(--graphite); margin-bottom: 6px;
+}
+.contact-card-body a {
+  display: block;
+  font-size: 15px; font-weight: 500;
+  color: var(--graphite);
+  transition: color var(--trans);
+  line-height: 1.6;
+}
+.contact-card-body a:hover { color: var(--blue); }
+.contact-card-body p {
+  font-size: 15px; font-weight: 500;
+  color: var(--graphite); line-height: 1.6;
+}
+.schedule-note {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: var(--gray) !important;
+  margin-top: 2px;
+}
+
+
+/* ─── Форма заявки (права колонка) ─── */
+.form-card {
+  background: var(--bg-light);
+  border-radius: 14px;
+  padding: 40px 36px;
+  border: 1px solid var(--border);
+}
+.form-card .section-tag { margin-bottom: 10px; }
+.form-card h2 {
+  font-family: var(--font-head);
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 400; line-height: 1.2;
+  letter-spacing: -0.3px;
+  color: var(--graphite); margin-bottom: 10px;
+}
+.form-card h2 span { color: var(--blue); }
+.form-desc {
+  font-size: 14px; font-weight: 300;
+  color: var(--gray); line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--graphite);
+  margin-bottom: 6px;
+}
+.label-opt { font-weight: 400; color: var(--gray); }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--graphite);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color var(--trans), box-shadow var(--trans);
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(76,182,232,0.12);
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--gray); opacity: 0.6;
+}
+.form-group select { cursor: pointer; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+
+.form-submit {
+  width: 100%;
+  justify-content: center;
+  padding: 14px 24px;
+  font-size: 15px;
+  margin-top: 6px;
+}
+.form-privacy {
+  font-size: 11px;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* Повідомлення про успіх */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+.success-icon {
+  width: 64px; height: 64px;
+  background: var(--blue-light);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.success-icon svg {
+  width: 32px; height: 32px;
+  stroke: var(--blue); fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.form-success h3 {
+  font-family: var(--font-head);
+  font-size: 20px; font-weight: 500;
+  color: var(--graphite); margin-bottom: 8px;
+}
+.form-success p {
+  font-size: 15px; color: var(--gray);
+}
+
+
+/* ─── Карта Google Maps ─── */
+.contacts-map {
+  line-height: 0; /* прибирає зайвий відступ під iframe */
+}
+.contacts-map iframe {
+  width: 100%;
+  height: 450px;
+  display: block;
+}
+
+
+/* ─────────────────────────────────────────────
+   АДАПТИВНІСТЬ КОНТАКТІВ
+   ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .contacts-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .contacts-page { padding: 64px 0; }
+  .form-card { padding: 32px 24px; }
+  .contacts-map iframe { height: 350px; }
+}
+@media (max-width: 640px) {
+  .contacts-page { padding: 48px 0; }
+  .contact-card { padding: 18px; }
+  .form-card { padding: 28px 20px; }
+  .contacts-map iframe { height: 280px; }
+}

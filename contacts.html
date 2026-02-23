@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--
+  ВікнаДім — Сторінка Контакти
+  Файл: contacts.html
+-->
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакти — ВікнаДім</title>
+  <meta name="description" content="Зв'яжіться з ВікнаДім — телефонуйте, пишіть або завітайте до нас. пр. Слобожанський 95, Дніпро. Безкоштовний замір.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER + МОБІЛЬНЕ МЕНЮ
+     Вставляються автоматично з js/components.js
+     ══════════════════════════════════════════ -->
+<div id="site-header"></div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE HERO — заголовок сторінки
+     ══════════════════════════════════════════ -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <div class="breadcrumbs">
+          <a href="index.html">Головна</a>
+          <span class="breadcrumbs-sep">/</span>
+          <span>Контакти</span>
+        </div>
+        <div class="section-tag">Зв'яжіться з нами</div>
+        <h1>Наші <span>контакти</span></h1>
+        <p>Телефонуйте, пишіть або завітайте до нас особисто. Ми завжди раді допомогти з вибором та розрахунком.</p>
+      </div>
+      <a href="tel:+380963046234" class="btn btn-primary">Зателефонувати</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     КОНТАКТИ + ФОРМА
+     Дві колонки: ліворуч контактна інфо, праворуч — форма
+     ══════════════════════════════════════════ -->
+<section class="contacts-page">
+  <div class="container">
+    <div class="contacts-layout">
+
+      <!-- Ліва частина: контактна інформація -->
+      <div class="contacts-info fade-up">
+
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-card-body">
+            <h3>Телефон</h3>
+            <a href="tel:+380963046234">+38 (096) 304-62-34</a>
+            <a href="tel:+380996036351">+38 (099) 603-63-51</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-card-body">
+            <h3>Email</h3>
+            <a href="mailto:oknadom.dp@gmail.com">oknadom.dp@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-card-body">
+            <h3>Адреса</h3>
+            <p>пр. Слобожанський 95</p>
+            <p>Дніпро</p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="contact-card-body">
+            <h3>Графік роботи</h3>
+            <p>Пн–Пт: 9:00–18:00</p>
+            <p>Сб: 9:00–15:00</p>
+            <p class="schedule-note">Нд — вихідний</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Права частина: форма заявки -->
+      <div class="contacts-form-wrap fade-up">
+        <div class="form-card">
+          <div class="section-tag">Залишити заявку</div>
+          <h2>Безкоштовний <span>замір</span></h2>
+          <p class="form-desc">Залиште свої дані — ми зателефонуємо протягом 30 хвилин для уточнення деталей.</p>
+
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Ваше ім'я</label>
+              <input type="text" id="name" name="name" placeholder="Олександр" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Телефон</label>
+              <input type="tel" id="phone" name="phone" placeholder="+38 (0__) ___-__-__" required>
+            </div>
+            <div class="form-group">
+              <label for="service">Що вас цікавить?</label>
+              <select id="service" name="service">
+                <option value="">Оберіть послугу</option>
+                <option value="metaplastic">Металопластикові вікна та двері</option>
+                <option value="aluminium">Алюмінієві системи та фасади</option>
+                <option value="glass">Цільноскляні конструкції</option>
+                <option value="sunprotect">Сонцезахист (жалюзі, штори)</option>
+                <option value="other">Інше</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Коментар <span class="label-opt">(необов'язково)</span></label>
+              <textarea id="message" name="message" rows="4" placeholder="Опишіть ваш проєкт або задайте питання..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">Надіслати заявку</button>
+            <p class="form-privacy">Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних</p>
+          </form>
+
+          <!-- Повідомлення про успіх (прихований, JS показує після відправки) -->
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Дякуємо за заявку!</h3>
+            <p>Ми зв'яжемось з вами протягом 30 хвилин.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     GOOGLE MAPS — карта з розташуванням офісу
+     ══════════════════════════════════════════ -->
+<section class="contacts-map">
+  <iframe
+    src="https://www.google.com/maps?q=%D0%BF%D1%80.+%D0%A1%D0%BB%D0%BE%D0%B1%D0%BE%D0%B6%D0%B0%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9+95,+%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE&output=embed"
+    width="100%"
+    height="450"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="ВікнаДім на карті — пр. Слобожанський 95, Дніпро"
+  ></iframe>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER — вставляється з js/components.js
+     ══════════════════════════════════════════ -->
+<div id="site-footer"></div>
+
+
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+
+<!-- JS для форми: валідація та відправка -->
+<script>
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Тут буде реальна відправка (наприклад через fetch на сервер).
+      // Поки що показуємо повідомлення про успіх.
+      form.style.display = 'none';
+      success.style.display = 'block';
+    });
+  }
+</script>
+
+</body>
+</html>

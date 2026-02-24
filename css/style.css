@@ -670,6 +670,13 @@ footer {
   transition: all var(--trans);
 }
 .footer-social a:hover { border-color: var(--blue); color: var(--blue); }
+.footer-privacy {
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  margin-left: 8px;
+  transition: color var(--trans);
+}
+.footer-privacy:hover { color: var(--blue); }
 /* ============================================================
    ДОДАТОК ДО style.css
    Стилі для сторінки services.html
@@ -2530,3 +2537,103 @@ footer {
   .form-card { padding: 28px 20px; }
   .contacts-map iframe { height: 280px; }
 }
+
+
+/* ============================================================
+   СТОРІНКА 404 — 404.html
+   ============================================================ */
+.error-page {
+  padding: 120px 0 140px;
+  background: var(--white);
+}
+.error-inner {
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.error-code {
+  font-family: var(--font-head);
+  font-size: clamp(80px, 15vw, 140px);
+  font-weight: 500;
+  color: var(--blue);
+  opacity: 0.15;
+  line-height: 1;
+  margin-bottom: -10px;
+}
+.error-inner h1 {
+  font-family: var(--font-head);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 500;
+  color: var(--graphite);
+  margin-bottom: 14px;
+}
+.error-inner p {
+  font-size: 15px; color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.error-actions {
+  display: flex; gap: 12px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+.error-links {
+  display: flex; gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.error-links a {
+  font-size: 13px; font-weight: 500;
+  color: var(--gray);
+  text-decoration: none;
+  transition: color var(--trans);
+}
+.error-links a:hover { color: var(--blue); }
+
+
+/* ============================================================
+   ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ — privacy.html
+   ============================================================ */
+.legal-page {
+  padding: 48px 0 100px;
+  background: var(--white);
+}
+.legal-content {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.legal-updated {
+  font-size: 13px; color: var(--gray);
+  font-style: italic;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.legal-content h2 {
+  font-family: var(--font-head);
+  font-size: 17px; font-weight: 500;
+  color: var(--graphite);
+  margin: 36px 0 12px;
+  letter-spacing: -0.2px;
+}
+.legal-content h2:first-of-type { margin-top: 0; }
+.legal-content p {
+  font-size: 14px; font-weight: 300;
+  color: var(--gray); line-height: 1.85;
+  margin-bottom: 12px;
+}
+.legal-content ul {
+  margin: 8px 0 16px 0;
+  padding-left: 20px;
+}
+.legal-content li {
+  font-size: 14px; font-weight: 300;
+  color: var(--gray); line-height: 1.85;
+  margin-bottom: 6px;
+}
+.legal-content a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: color var(--trans);
+}
+.legal-content a:hover { color: var(--blue-dark); }

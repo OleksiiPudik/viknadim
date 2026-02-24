@@ -1773,7 +1773,7 @@ footer {
 /* Картка статті — горизонтальна (фото зліва, текст справа) */
 .blog-card {
   display: grid;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 260px 1fr;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -1785,13 +1785,14 @@ footer {
 .blog-card:hover {
   box-shadow: var(--shadow-md);
   border-color: rgba(76,182,232,0.25);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
-/* Фото картки */
+/* Фото картки — компактне */
 .blog-card-img {
   height: 100%;
-  min-height: 220px;
+  min-height: 180px;
+  max-height: 220px;
   overflow: hidden;
   position: relative;
   background: var(--bg-light);
@@ -1879,15 +1880,20 @@ footer {
 /* Контент статті */
 .article-content {}
 
-/* Заглавне фото */
+/* Заглавне фото — зменшена висота, фон-підкладка */
 .article-cover {
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 28px;
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 340px;
 }
 .article-cover img {
   width: 100%;
-  aspect-ratio: 1.9;
+  max-height: 340px;
   object-fit: cover;
   display: block;
 }
@@ -1981,7 +1987,7 @@ footer {
 
 /* Пов'язані статті в сайдбарі */
 .sidebar-post {
-  display: flex; gap: 12px;
+  display: flex; gap: 10px;
   text-decoration: none; color: inherit;
   padding: 10px 0;
   border-bottom: 1px solid var(--border);
@@ -1990,20 +1996,20 @@ footer {
 .sidebar-post:last-child { border-bottom: none; padding-bottom: 0; }
 .sidebar-post:hover { opacity: 0.75; }
 .sidebar-post img {
-  width: 64px; height: 48px;
+  width: 48px; height: 36px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 4px;
   flex-shrink: 0;
 }
 .sidebar-post strong {
   display: block;
-  font-size: 13px; font-weight: 600;
+  font-size: 12px; font-weight: 600;
   color: var(--graphite);
   line-height: 1.35;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 .sidebar-post span {
-  font-size: 11px; color: var(--gray);
+  font-size: 10px; color: var(--gray);
 }
 
 /* CTA в сайдбарі */
@@ -2012,12 +2018,68 @@ footer {
   line-height: 1.6; margin-bottom: 14px;
 }
 
+/* ─────────────────────────────────────────────
+   «ІНШІ СТАТТІ» — блок під основним контентом
+   ───────────────────────────────────────────── */
+.related-articles {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 2px solid var(--border);
+}
+.related-title {
+  font-family: var(--font-head);
+  font-size: 17px; font-weight: 500;
+  color: var(--graphite);
+  margin-bottom: 20px;
+  letter-spacing: -0.2px;
+}
+.related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.related-card {
+  display: flex; gap: 14px;
+  text-decoration: none; color: inherit;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-light);
+  transition: all var(--trans);
+}
+.related-card:hover {
+  border-color: rgba(76,182,232,0.3);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+.related-card img {
+  width: 80px; height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.related-card-body {
+  display: flex; flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.related-card-body strong {
+  display: block;
+  font-size: 13px; font-weight: 600;
+  color: var(--graphite);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.related-card-body span {
+  font-size: 11px; color: var(--gray);
+}
+
 
 /* ─────────────────────────────────────────────
    АДАПТИВНІСТЬ БЛОГУ
    ───────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .blog-card { grid-template-columns: 300px 1fr; }
+  .blog-card { grid-template-columns: 220px 1fr; }
   .article-layout { grid-template-columns: 1fr; }
   .article-sidebar { position: static; }
 }
@@ -2025,15 +2087,19 @@ footer {
   .blog-card {
     grid-template-columns: 1fr;
   }
-  .blog-card-img { min-height: 200px; max-height: 240px; }
+  .blog-card-img { min-height: 180px; max-height: 200px; }
   .blog-card-body { padding: 20px 24px 24px; }
   .blog-card-body h3 { font-size: 16px; }
+  .article-cover { max-height: 240px; }
+  .article-cover img { max-height: 240px; }
 }
 @media (max-width: 640px) {
   .blog-page { padding: 48px 0 72px; }
-  .blog-card-img { min-height: 180px; max-height: 220px; }
+  .blog-card-img { min-height: 160px; max-height: 180px; }
   .blog-card-body { padding: 16px 18px 20px; }
   .blog-card-body h3 { font-size: 15px; }
+  .article-cover { max-height: 200px; }
+  .article-cover img { max-height: 200px; }
 }
 
 

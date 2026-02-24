@@ -1756,6 +1756,226 @@ footer {
 
 
 /* ============================================================
+   СТОРІНКА ПРО КОМПАНІЮ — about.html
+   ============================================================ */
+
+/* ─────────────────────────────────────────────
+   НАША ІСТОРІЯ (фото + текст)
+   ───────────────────────────────────────────── */
+.about-story { padding: 80px 0; background: var(--white); }
+.about-story-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.about-story-images {
+  position: relative;
+  padding-right: 40px;
+  padding-bottom: 40px;
+}
+.about-story-text .section-title { margin-top: 8px; }
+.about-story-text p {
+  font-size: 15px; font-weight: 300;
+  color: var(--gray); line-height: 1.85;
+  margin-bottom: 14px;
+}
+.about-story-text p:last-child { margin-bottom: 0; }
+
+/* ─────────────────────────────────────────────
+   ЦИФРИ — ДОСЯГНЕННЯ
+   ───────────────────────────────────────────── */
+.about-stats { padding: 72px 0; background: var(--bg-light); }
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.stat-card {
+  text-align: center;
+  padding: 36px 20px;
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all var(--trans);
+}
+.stat-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+.stat-card strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 36px; font-weight: 500;
+  color: var(--blue);
+  line-height: 1; margin-bottom: 8px;
+}
+.stat-card span {
+  display: block;
+  font-size: 14px; font-weight: 600;
+  color: var(--graphite);
+  margin-bottom: 6px;
+}
+.stat-card p {
+  font-size: 12px; color: var(--gray);
+  line-height: 1.5; margin: 0;
+}
+
+/* ─────────────────────────────────────────────
+   ЧОМУ ОБИРАЮТЬ НАС
+   ───────────────────────────────────────────── */
+.about-why { padding: 88px 0; background: var(--white); }
+.about-why-header { text-align: center; margin-bottom: 48px; }
+.about-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.why-card {
+  padding: 32px 28px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  transition: all var(--trans);
+}
+.why-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(76,182,232,0.2);
+  transform: translateY(-3px);
+}
+.why-card-icon {
+  width: 48px; height: 48px;
+  background: var(--blue-light);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.why-card-icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--blue); fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.why-card h3 {
+  font-family: var(--font-head);
+  font-size: 15px; font-weight: 500;
+  color: var(--graphite);
+  margin-bottom: 10px;
+}
+.why-card p {
+  font-size: 13px; color: var(--gray);
+  line-height: 1.7;
+}
+
+/* ─────────────────────────────────────────────
+   ЯК МИ ПРАЦЮЄМО — ЕТАПИ
+   ───────────────────────────────────────────── */
+.about-steps { padding: 88px 0; background: var(--bg-light); }
+.about-steps-header { text-align: center; margin-bottom: 48px; }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.step-card {
+  padding: 28px 22px;
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all var(--trans);
+  position: relative;
+}
+.step-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+.step-num {
+  font-family: var(--font-head);
+  font-size: 32px; font-weight: 500;
+  color: var(--blue);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.step-card:hover .step-num { opacity: 0.6; }
+.step-card h3 {
+  font-family: var(--font-head);
+  font-size: 14px; font-weight: 500;
+  color: var(--graphite);
+  margin-bottom: 8px;
+}
+.step-card p {
+  font-size: 12px; color: var(--gray);
+  line-height: 1.65;
+}
+
+/* ─────────────────────────────────────────────
+   СЕРТИФІКАТИ ТА ПАРТНЕРИ
+   ───────────────────────────────────────────── */
+.about-partners { padding: 88px 0; background: var(--white); }
+.about-partners-header { text-align: center; margin-bottom: 48px; }
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.partner-card {
+  text-align: center;
+  padding: 28px 16px;
+  background: var(--bg-light);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  transition: all var(--trans);
+}
+.partner-card:hover {
+  border-color: rgba(76,182,232,0.3);
+  background: var(--blue-light);
+}
+.partner-card strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 16px; font-weight: 500;
+  color: var(--graphite);
+  margin-bottom: 4px;
+}
+.partner-card span {
+  font-size: 11px; color: var(--gray);
+  letter-spacing: 0.3px;
+}
+
+/* ─────────────────────────────────────────────
+   АДАПТИВНІСТЬ — ПРО КОМПАНІЮ
+   ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .about-story-inner { gap: 40px; }
+  .about-story-images { padding-right: 30px; }
+  .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-why-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(3, 1fr); }
+  .partners-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .about-story-inner { grid-template-columns: 1fr; }
+  .about-story-images { padding-right: 0; padding-bottom: 0; max-width: 480px; }
+  .about-why-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .partners-grid { grid-template-columns: repeat(3, 1fr); }
+  .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .about-story { padding: 48px 0; }
+  .about-stats { padding: 48px 0; }
+  .about-why { padding: 56px 0; }
+  .about-steps { padding: 56px 0; }
+  .about-partners { padding: 56px 0; }
+  .about-stats-grid { grid-template-columns: 1fr 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .partners-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-card strong { font-size: 28px; }
+}
+
+
+/* ============================================================
    СТОРІНКА БЛОГУ — blog.html
    ============================================================ */
 

@@ -116,7 +116,7 @@ function renderFooter() {
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; ${year} ВікнаДім. Усі права захищені.</span>
+      <span>&copy; ${year} ВікнаДім. Усі права захищені. <a href="privacy.html" class="footer-privacy">Політика конфіденційності</a></span>
       <div class="footer-social">
         <a href="#" aria-label="Facebook">fb</a>
         <a href="#" aria-label="Instagram">ig</a>

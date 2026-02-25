@@ -31,7 +31,7 @@ function renderHeader() {
 
       <ul class="nav-links">
         <li><a href="index.html">Головна</a></li>
-        <li><a href="services.html">Послуги</a></li>
+        <li><a href="services.html">Товари та Послуги</a></li>
         <li><a href="portfolio.html">Наші роботи</a></li>
         <li><a href="about.html">Про нас</a></li>
         <li><a href="blog.html">Блог</a></li>
@@ -55,7 +55,7 @@ function renderHeader() {
 <div id="mobileMenu" class="mobile-menu">
   <ul>
     <li><a href="index.html">Головна</a></li>
-    <li><a href="services.html">Послуги</a></li>
+    <li><a href="services.html">Товари та Послуги</a></li>
     <li><a href="portfolio.html">Наші роботи</a></li>
     <li><a href="about.html">Про нас</a></li>
     <li><a href="blog.html">Блог</a></li>
@@ -88,7 +88,7 @@ function renderFooter() {
         <p>Виробник, монтажник металопластикових та алюмінієвих конструкцій, цільноскляних систем, сонцезахисту.</p>
       </div>
       <div class="footer-col">
-        <h4>Послуги</h4>
+        <h4>Товари та Послуги</h4>
         <ul>
           <li><a href="services.html">Металопластикові конструкції</a></li>
           <li><a href="services.html">Алюмінієві системи</a></li>

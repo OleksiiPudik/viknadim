@@ -169,13 +169,16 @@
     var hasKids = childCount(item) > 0;
     var href = '#' + hashPrefix + item.id;
 
-    var icon = '';
-    if (depth === 0 && ICONS[item.id]) {
-      icon = '<div class="catalog-card-icon">' + ICONS[item.id] + '</div>';
+    /* Картинка — якщо є поле img, показуємо її замість іконки */
+    var visual = '';
+    if (item.img) {
+      visual = '<div class="catalog-card-img"><img src="' + item.img + '" alt="' + item.title + '"></div>';
+    } else if (depth === 0 && ICONS[item.id]) {
+      visual = '<div class="catalog-card-icon">' + ICONS[item.id] + '</div>';
     } else if (hasKids) {
-      icon = '<div class="catalog-card-icon catalog-card-icon--small">' + ICON_FOLDER + '</div>';
+      visual = '<div class="catalog-card-icon catalog-card-icon--small">' + ICON_FOLDER + '</div>';
     } else {
-      icon = '<div class="catalog-card-icon catalog-card-icon--small">' + ICON_ITEM + '</div>';
+      visual = '<div class="catalog-card-icon catalog-card-icon--small">' + ICON_ITEM + '</div>';
     }
 
     var badge = item.badge
@@ -196,8 +199,10 @@
       ? ' catalog-card--top'
       : (hasKids ? '' : ' catalog-card--leaf');
 
+    if (item.img) classModifier += ' catalog-card--has-img';
+
     return '<a href="' + href + '" class="catalog-card' + classModifier + '">' +
-             icon + badge +
+             visual + badge +
              '<h3 class="catalog-card-title">' + item.title + '</h3>' +
              desc + count +
              '<span class="catalog-card-btn">' + btnLabel + '</span>' +
@@ -260,6 +265,9 @@
     } else if (current) {
       /* Лист без дочірніх — показуємо деталі товару + кнопку замовити */
       html += '<div class="catalog-leaf-detail">';
+      if (current.img) {
+        html += '<div class="catalog-leaf-img"><img src="' + current.img + '" alt="' + current.title + '"></div>';
+      }
       if (current.desc) {
         html += '<p>' + current.desc + '</p>';
       }

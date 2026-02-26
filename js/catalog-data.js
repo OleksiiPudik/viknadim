@@ -8,9 +8,13 @@
    │  1. Знайди потрібний розділ нижче                             │
    │  2. Додай новий об'єкт у масив children                      │
    │  3. Обов'язкові поля:  id (латиницею, унікальний), title      │
-   │  4. Необов'язкові:     desc, badge, children                 │
+   │  4. Необов'язкові:     desc, badge, img, children            │
    │                                                              │
-   │  ПРИКЛАД — додати профіль "Aluplast" у металопластик:        │
+   │  ПОЛЕ img — шлях до картинки (відносно services.html):       │
+   │    img: 'images/products/wds-8s.jpg'                         │
+   │  Картинка показується на картці та на сторінці товару.        │
+   │                                                              │
+   │  ПРИКЛАД — додати профіль "Aluplast" з картинкою:            │
    │                                                              │
    │  Знайди масив children в розділі "metaloplast" і додай:      │
    │                                                              │
@@ -18,8 +22,10 @@
    │    id: 'aluplast',                                           │
    │    title: 'Профіль Aluplast',                                │
    │    desc: 'Німецька профільна система Aluplast.',              │
+   │    img: 'images/products/aluplast.jpg',                      │
    │    children: [                                               │
-   │      { id: 'aluplast-2000', title: 'Aluplast 2000' },        │
+   │      { id: 'aluplast-2000', title: 'Aluplast 2000',          │
+   │        img: 'images/products/aluplast-2000.jpg' },            │
    │      { id: 'aluplast-4000', title: 'Aluplast 4000' },        │
    │    ]                                                         │
    │  }                                                           │

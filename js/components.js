@@ -90,10 +90,11 @@ function renderFooter() {
       <div class="footer-col">
         <h4>Товари та Послуги</h4>
         <ul>
-          <li><a href="services.html">Металопластикові конструкції</a></li>
-          <li><a href="services.html">Алюмінієві системи</a></li>
-          <li><a href="services.html">ЦільноСкляні конструкції</a></li>
-          <li><a href="services.html">Сонцезахист</a></li>
+          <li><a href="services.html#metaloplast">Металопластикові конструкції</a></li>
+          <li><a href="services.html#aluminium">Алюмінієві системи</a></li>
+          <li><a href="services.html#accessories">Комплектуючі</a></li>
+          <li><a href="services.html#glass">Цільноскляні конструкції</a></li>
+          <li><a href="services.html#sunprotect">Сонцезахист</a></li>
         </ul>
       </div>
       <div class="footer-col">

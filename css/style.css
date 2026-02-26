@@ -2720,6 +2720,11 @@ footer {
   line-height: 1.8;
   margin-bottom: 28px;
 }
+.catalog-leaf-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
 
 /* ── АДАПТИВНІСТЬ КАТАЛОГУ ── */

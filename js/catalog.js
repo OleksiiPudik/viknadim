@@ -167,9 +167,7 @@
   /** Генерує одну картку */
   function renderCard(item, hashPrefix, depth) {
     var hasKids = childCount(item) > 0;
-    var href = hasKids
-      ? '#' + hashPrefix + item.id
-      : 'contacts.html';
+    var href = '#' + hashPrefix + item.id;
 
     var icon = '';
     if (depth === 0 && ICONS[item.id]) {
@@ -192,7 +190,7 @@
       ? '<span class="catalog-card-count">' + pluralize(childCount(item)) + '</span>'
       : '';
 
-    var btnLabel = hasKids ? 'Детальніше' + ARROW : 'Замовити' + ARROW;
+    var btnLabel = hasKids ? 'Детальніше' + ARROW : 'Переглянути' + ARROW;
 
     var classModifier = depth === 0
       ? ' catalog-card--top'
@@ -259,11 +257,16 @@
         html += renderCard(children[i], hashPrefix, depth);
       }
       html += '</div>';
-    } else {
-      /* Лист без дочірніх — показуємо деталі + кнопку замовити */
-      html += '<div class="catalog-leaf-detail">' +
-                '<p>' + (current.desc || '') + '</p>' +
+    } else if (current) {
+      /* Лист без дочірніх — показуємо деталі товару + кнопку замовити */
+      html += '<div class="catalog-leaf-detail">';
+      if (current.desc) {
+        html += '<p>' + current.desc + '</p>';
+      }
+      html += '<div class="catalog-leaf-actions">' +
                 '<a href="contacts.html" class="btn btn-primary">Замовити' + ARROW + '</a>' +
+                '<a href="tel:+380963046234" class="btn btn-outline">Зателефонувати</a>' +
+              '</div>' +
               '</div>';
     }
 

@@ -264,8 +264,7 @@
         html += '<p>' + current.desc + '</p>';
       }
       html += '<div class="catalog-leaf-actions">' +
-                '<a href="contacts.html" class="btn btn-primary">Замовити' + ARROW + '</a>' +
-                '<a href="tel:+380963046234" class="btn btn-outline">Зателефонувати</a>' +
+                '<a href="contacts.html" class="btn btn-primary">Замовити</a>' +
               '</div>' +
               '</div>';
     }

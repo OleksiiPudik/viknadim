@@ -2761,23 +2761,175 @@ footer {
 }
 
 
+/* ── SHOWCASE: вертикальний список з чередуванням фото/тексту (1-й рівень) ── */
+
+/* Таби */
+.catalog-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 48px;
+  padding-bottom: 0;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.catalog-tabs::-webkit-scrollbar { display: none; }
+
+.catalog-tab {
+  padding: 12px 20px;
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--trans);
+}
+.catalog-tab:hover {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+/* Контейнер showcase */
+.catalog-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* Рядок категорії */
+.catalog-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Чередування: фото зліва / фото справа */
+.catalog-row--img-left .catalog-row-img    { order: 1; }
+.catalog-row--img-left .catalog-row-content { order: 2; }
+.catalog-row--img-right .catalog-row-img    { order: 2; }
+.catalog-row--img-right .catalog-row-content { order: 1; }
+
+/* Фото */
+.catalog-row-img {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+.catalog-row-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.catalog-row:hover .catalog-row-img img {
+  transform: scale(1.03);
+}
+
+/* Бейдж на фото */
+.catalog-row-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--blue);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+/* Заголовок */
+.catalog-row-title {
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--graphite);
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.catalog-row-title span {
+  color: var(--blue);
+}
+
+/* Опис */
+.catalog-row-desc {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+/* Чіпи підкатегорій */
+.catalog-row-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.catalog-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--graphite);
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all var(--trans);
+}
+.catalog-tag-chip:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: rgba(76, 182, 232, 0.05);
+}
+
+
 /* ── АДАПТИВНІСТЬ КАТАЛОГУ ── */
 @media (max-width: 1024px) {
-  .catalog-grid--top { grid-template-columns: repeat(2, 1fr); }
   .catalog-grid--inner { grid-template-columns: repeat(2, 1fr); }
+  .catalog-row { gap: 32px; }
+  .catalog-row-title { font-size: 24px; }
 }
 
 @media (max-width: 768px) {
   .catalog-section { padding: 40px 0 64px; }
   .catalog-card { padding: 22px 20px 20px; }
-  .catalog-card--top { padding: 24px 22px 22px; }
-  .catalog-card--top .catalog-card-icon { width: 40px; height: 40px; }
+
+  /* Showcase — одна колонка на мобільних */
+  .catalog-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  /* Фото завжди зверху на мобільних */
+  .catalog-row--img-left .catalog-row-img,
+  .catalog-row--img-right .catalog-row-img    { order: 1; }
+  .catalog-row--img-left .catalog-row-content,
+  .catalog-row--img-right .catalog-row-content { order: 2; }
+
+  .catalog-showcase { gap: 48px; }
+  .catalog-row-title { font-size: 22px; }
+  .catalog-tabs { margin-bottom: 32px; }
+  .catalog-tab { padding: 10px 16px; font-size: 13px; }
 }
 
 @media (max-width: 640px) {
-  .catalog-grid--top { grid-template-columns: 1fr; }
   .catalog-grid--inner { grid-template-columns: 1fr; }
   .catalog-section { padding: 32px 0 48px; }
+  .catalog-showcase { gap: 40px; }
+  .catalog-row-title { font-size: 20px; }
+  .catalog-row-desc { font-size: 14px; }
 }
 
 

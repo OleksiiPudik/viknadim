@@ -132,11 +132,9 @@
     for (var i = 0; i < chain.length; i++) {
       html += '<span class="breadcrumbs-sep">/</span>';
       if (i < chain.length - 1) {
-        // посилання на проміжний рівень
         var href = '#' + chain.slice(0, i + 1).map(function(n) { return n.id; }).join('/');
         html += '<a href="' + href + '">' + chain[i].title + '</a>';
       } else {
-        // активний (поточний) рівень
         html += '<span>' + chain[i].title + '</span>';
       }
     }
@@ -164,17 +162,94 @@
   }
 
 
+  /* ── Showcase: вертикальний список з чередуванням фото/тексту ── */
+
+  /** Генерує горизонтальні таби-навігацію для швидкого скролу */
+  function renderTabs(children) {
+    var html = '<div class="catalog-tabs">';
+    for (var i = 0; i < children.length; i++) {
+      var label = children[i].tab || children[i].title;
+      html += '<button type="button" class="catalog-tab" data-target="cat-' +
+              children[i].id + '">' + label + '</button>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  /** Генерує showcase-рядок для однієї категорії */
+  function renderShowcaseRow(item, index) {
+    var isImgLeft = (index % 2 === 0);
+    var cls = 'catalog-row' + (isImgLeft ? ' catalog-row--img-left' : ' catalog-row--img-right');
+
+    var html = '<div class="' + cls + ' fade-up" id="cat-' + item.id + '">';
+
+    /* — Фото — */
+    var badge = item.badge
+      ? '<span class="catalog-row-badge">' + item.badge + '</span>'
+      : '';
+    html += '<div class="catalog-row-img">' +
+              '<img src="' + (item.img || '') + '" alt="' + item.title + '">' +
+              badge +
+            '</div>';
+
+    /* — Контент — */
+    html += '<div class="catalog-row-content">';
+
+    /* Заголовок — виділяємо останнє слово кольором */
+    var words = item.title.split(' ');
+    var lastWord = words.pop();
+    html += '<h2 class="catalog-row-title">' +
+            (words.length ? words.join(' ') + ' ' : '') +
+            '<span>' + lastWord + '</span></h2>';
+
+    /* Опис */
+    if (item.desc) {
+      html += '<p class="catalog-row-desc">' +
+              item.desc.replace(/\n/g, '<br>') + '</p>';
+    }
+
+    /* Чіпи підкатегорій */
+    if (item.children && item.children.length) {
+      html += '<div class="catalog-row-tags">';
+      for (var j = 0; j < item.children.length; j++) {
+        var child = item.children[j];
+        html += '<a href="#' + item.id + '/' + child.id + '" class="catalog-tag-chip">' +
+                child.title + '</a>';
+      }
+      html += '</div>';
+    }
+
+    /* Кнопка */
+    html += '<a href="#' + item.id + '" class="btn btn-primary">Детальніше</a>';
+
+    html += '</div>'; /* /catalog-row-content */
+    html += '</div>'; /* /catalog-row */
+
+    return html;
+  }
+
+  /** Генерує весь showcase (таби + рядки) */
+  function renderShowcase(children) {
+    var html = renderTabs(children);
+    html += '<div class="catalog-showcase">';
+    for (var i = 0; i < children.length; i++) {
+      html += renderShowcaseRow(children[i], i);
+    }
+    html += '</div>';
+    return html;
+  }
+
+
+  /* ── Картки (для внутрішніх рівнів) ── */
+
   /** Генерує одну картку */
   function renderCard(item, hashPrefix, depth) {
     var hasKids = childCount(item) > 0;
     var href = '#' + hashPrefix + item.id;
 
-    /* Картинка — якщо є поле img, показуємо її замість іконки */
     var visual = '';
     if (item.img) {
       visual = '<div class="catalog-card-img"><img src="' + item.img + '" alt="' + item.title + '"></div>';
-    } else if (depth === 0 && ICONS[item.id]) {
-      visual = '<div class="catalog-card-icon">' + ICONS[item.id] + '</div>';
     } else if (hasKids) {
       visual = '<div class="catalog-card-icon catalog-card-icon--small">' + ICON_FOLDER + '</div>';
     } else {
@@ -195,10 +270,7 @@
 
     var btnLabel = hasKids ? 'Детальніше' + ARROW : 'Переглянути' + ARROW;
 
-    var classModifier = depth === 0
-      ? ' catalog-card--top'
-      : (hasKids ? '' : ' catalog-card--leaf');
-
+    var classModifier = hasKids ? '' : ' catalog-card--leaf';
     if (item.img) classModifier += ' catalog-card--has-img';
 
     return '<a href="' + href + '" class="catalog-card' + classModifier + '">' +
@@ -218,7 +290,6 @@
     if (path.length) {
       result = findByPath(path);
       if (!result) {
-        // невалідний хеш — повертаємось на головну
         window.location.hash = '';
         return;
       }
@@ -249,21 +320,23 @@
     var depth = chain.length;
     var hashPrefix = path.length ? path.join('/') + '/' : '';
 
-    /* ── Рендеримо сітку карток ── */
+    /* ── Рендеримо контент ── */
     var html = renderBackBtn(chain);
 
     if (children.length) {
-      var gridClass = depth === 0
-        ? 'catalog-grid catalog-grid--top'
-        : 'catalog-grid catalog-grid--inner';
-
-      html += '<div class="' + gridClass + '">';
-      for (var i = 0; i < children.length; i++) {
-        html += renderCard(children[i], hashPrefix, depth);
+      if (depth === 0) {
+        /* Перший рівень — showcase з чередуванням фото/тексту */
+        html += renderShowcase(children);
+      } else {
+        /* Глибші рівні — сітка карток */
+        html += '<div class="catalog-grid catalog-grid--inner">';
+        for (var i = 0; i < children.length; i++) {
+          html += renderCard(children[i], hashPrefix, depth);
+        }
+        html += '</div>';
       }
-      html += '</div>';
     } else if (current) {
-      /* Лист без дочірніх — показуємо деталі товару + кнопку замовити */
+      /* Лист без дочірніх — деталі товару + кнопка замовити */
       html += '<div class="catalog-leaf-detail">';
       if (current.img) {
         html += '<div class="catalog-leaf-img"><img src="' + current.img + '" alt="' + current.title + '"></div>';
@@ -300,6 +373,20 @@
   /* ════════════════════════════════════════════
      ІНІЦІАЛІЗАЦІЯ
      ════════════════════════════════════════════ */
+
+  /* Делегування кліків по табах — плавний скрол до секції */
+  root.addEventListener('click', function (e) {
+    var tab = e.target.closest('.catalog-tab');
+    if (!tab) return;
+    e.preventDefault();
+    var targetId = tab.getAttribute('data-target');
+    var target = document.getElementById(targetId);
+    if (target) {
+      var top = target.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+  });
+
   window.addEventListener('hashchange', render);
   render();
 

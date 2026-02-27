@@ -14,7 +14,26 @@
    │    img: 'images/products/wds-8s.jpg'                         │
    │  Картинка показується на картці та на сторінці товару.        │
    │                                                              │
-   │  ПРИКЛАД — додати профіль "Aluplast" з картинкою:            │
+   │  ── ЯК ЗМІНИТИ ФОТО КАТЕГОРІЇ (ПЕРШОГО РІВНЯ): ────────────  │
+   │                                                              │
+   │  Фото категорій зберігаються у папках:                        │
+   │    images/products/metaloplast/category.jpg                   │
+   │    images/products/aluminium/category.jpg                     │
+   │    images/products/accessories/category.jpg                   │
+   │    images/products/glass/category.jpg                         │
+   │    images/products/sunprotect/category.jpg                    │
+   │                                                              │
+   │  Щоб замінити фото:                                          │
+   │    1. Підготуй картинку (рекомендовано ~800×500 px, .jpg)     │
+   │    2. Заміни файл category.jpg у потрібній папці              │
+   │    3. Або зміни шлях у полі img нижче                         │
+   │                                                              │
+   │  Фото підкатегорій / товарів — також у цих папках:            │
+   │    images/products/metaloplast/wds-8s.jpg                     │
+   │    images/products/aluminium/cold-alu.jpg                     │
+   │    і т.д.                                                     │
+   │                                                              │
+   │  ── ЯК ДОДАТИ НОВИЙ РОЗДІЛ (ПРИКЛАД): ─────────────────────  │
    │                                                              │
    │  Знайди масив children в розділі "metaloplast" і додай:      │
    │                                                              │
@@ -22,10 +41,10 @@
    │    id: 'aluplast',                                           │
    │    title: 'Профіль Aluplast',                                │
    │    desc: 'Німецька профільна система Aluplast.',              │
-   │    img: 'images/products/aluplast.jpg',                      │
+   │    img: 'images/products/metaloplast/aluplast.jpg',           │
    │    children: [                                               │
    │      { id: 'aluplast-2000', title: 'Aluplast 2000',          │
-   │        img: 'images/products/aluplast-2000.jpg' },            │
+   │        img: 'images/products/metaloplast/aluplast-2000.jpg' },│
    │      { id: 'aluplast-4000', title: 'Aluplast 4000' },        │
    │    ]                                                         │
    │  }                                                           │
@@ -44,6 +63,7 @@ const CATALOG = [
     id: 'metaloplast',
     title: 'Металопластикові вікна та двері',
     desc: 'Виготовлення металопластикових конструкцій будь-якої складності на власному виробництві. Провідні профільні системи та якісна фурнітура.',
+    img: 'images/products/metaloplast/category.jpg',  /* ← замініть на реальне фото */
     badge: 'Найпопулярніше',
     children: [
 
@@ -103,6 +123,7 @@ const CATALOG = [
     id: 'aluminium',
     title: 'Алюмінієві системи та фасади',
     desc: 'Алюмінієві конструкції для комерційних та житлових об\'єктів. Легкі, міцні, довговічні — строк служби понад 50 років.',
+    img: 'images/products/aluminium/category.jpg',  /* ← замініть на реальне фото */
     badge: 'Для бізнесу',
     children: [
 
@@ -158,6 +179,7 @@ const CATALOG = [
     id: 'accessories',
     title: 'Комплектуючі до вікон та дверей',
     desc: 'Підвіконня, москітні сітки, дотягувачі, ручки та інші комплектуючі від провідних виробників.',
+    img: 'images/products/accessories/category.jpg',  /* ← замініть на реальне фото */
     children: [
 
       /* — Підвіконня — */
@@ -237,6 +259,7 @@ const CATALOG = [
     id: 'glass',
     title: 'Цільноскляні конструкції',
     desc: 'Безрамні скляні системи — архітектурні акценти, що роблять простір відкритим і сучасним. Загартоване скло та триплекс.',
+    img: 'images/products/glass/category.jpg',  /* ← замініть на реальне фото */
     badge: 'Преміум',
     children: [
       { id: 'glass-sliding',        title: 'Слайдингові',                 desc: 'Розсувні скляні системи для панорамного засклення.' },
@@ -256,7 +279,8 @@ const CATALOG = [
   {
     id: 'sunprotect',
     title: 'Сонцезахисні рішення',
-    desc: 'Жалюзі, рулонні та римські штори, пліссе — захист від сонця з можливістю автоматизації.',
+    desc: 'Захист від сонця та регулювання освітлення з можливістю автоматизації. Широкий асортимент систем:\n• Жалюзі (горизонтальні, вертикальні, дерев\'яні)\n• Рулонні штори (відкриті, касетні, День-Ніч)\n• Штори пліссе\n• Римські штори',
+    img: 'images/products/sunprotect/category.jpg',  /* ← замініть на реальне фото */
     children: [
 
       /* — Жалюзі — */

@@ -186,7 +186,7 @@
       : '';
 
     var desc = item.desc
-      ? '<p class="catalog-card-desc">' + item.desc + '</p>'
+      ? '<p class="catalog-card-desc">' + item.desc.replace(/\n/g, '<br>') + '</p>'
       : '';
 
     var count = hasKids
@@ -235,7 +235,7 @@
 
     if (current) {
       heroTitle.innerHTML = current.title;
-      heroDesc.textContent = current.desc || '';
+      heroDesc.innerHTML = (current.desc || '').replace(/\n/g, '<br>');
       heroTag.textContent = current.title;
       document.title = current.title + ' — ВікнаДім';
     } else {
@@ -269,7 +269,7 @@
         html += '<div class="catalog-leaf-img"><img src="' + current.img + '" alt="' + current.title + '"></div>';
       }
       if (current.desc) {
-        html += '<p>' + current.desc + '</p>';
+        html += '<p>' + current.desc.replace(/\n/g, '<br>') + '</p>';
       }
       html += '<div class="catalog-leaf-actions">' +
                 '<a href="contacts.html" class="btn btn-primary">Замовити</a>' +

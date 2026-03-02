@@ -13,6 +13,21 @@
 
 
 /* ─────────────────────────────────────────────
+   ВИЗНАЧЕННЯ БАЗОВОГО ШЛЯХУ
+   Якщо сторінка у підпапці (наприклад services/),
+   шляхи до інших сторінок мають починатись з "../"
+   ───────────────────────────────────────────── */
+const basePath = (function() {
+  const scriptSrc = document.querySelector('script[src*="components.js"]');
+  if (scriptSrc) {
+    const src = scriptSrc.getAttribute('src');
+    return src.replace('js/components.js', '');
+  }
+  return '';
+})();
+
+
+/* ─────────────────────────────────────────────
    HEADER + МОБІЛЬНЕ МЕНЮ
    Вставляється у <div id="site-header"></div>
    ───────────────────────────────────────────── */
@@ -20,27 +35,29 @@ function renderHeader() {
   const el = document.getElementById('site-header');
   if (!el) return;
 
+  const b = basePath;
+
   el.innerHTML = `
 <header id="header">
   <div class="container">
     <nav class="nav-inner">
 
-      <a href="index.html" class="nav-logo">
-        <img src="images/logo.jpg" alt="ВікнаДім — логотип">
+      <a href="${b}index.html" class="nav-logo">
+        <img src="${b}images/logo.jpg" alt="ВікнаДім — логотип">
       </a>
 
       <ul class="nav-links">
-        <li><a href="index.html">Головна</a></li>
-        <li><a href="services.html">Товари та Послуги</a></li>
-        <li><a href="portfolio.html">Наші роботи</a></li>
-        <li><a href="about.html">Про нас</a></li>
-        <li><a href="blog.html">Блог</a></li>
-        <li><a href="contacts.html">Контакти</a></li>
+        <li><a href="${b}index.html">Головна</a></li>
+        <li><a href="${b}services.html">Товари та Послуги</a></li>
+        <li><a href="${b}portfolio.html">Наші роботи</a></li>
+        <li><a href="${b}about.html">Про нас</a></li>
+        <li><a href="${b}blog.html">Блог</a></li>
+        <li><a href="${b}contacts.html">Контакти</a></li>
       </ul>
 
       <div class="nav-right">
         <a class="nav-phone" href="tel:+380963046234">+38 (096) 304-62-34</a>
-        <a href="contacts.html" class="btn btn-primary nav-cta">Замовити</a>
+        <a href="${b}contacts.html" class="btn btn-primary nav-cta">Замовити</a>
         <button id="burger" class="burger" aria-label="Меню">
           <span class="burger-line"></span>
           <span class="burger-line"></span>
@@ -54,16 +71,16 @@ function renderHeader() {
 
 <div id="mobileMenu" class="mobile-menu">
   <ul>
-    <li><a href="index.html">Головна</a></li>
-    <li><a href="services.html">Товари та Послуги</a></li>
-    <li><a href="portfolio.html">Наші роботи</a></li>
-    <li><a href="about.html">Про нас</a></li>
-    <li><a href="blog.html">Блог</a></li>
-    <li><a href="contacts.html">Контакти</a></li>
+    <li><a href="${b}index.html">Головна</a></li>
+    <li><a href="${b}services.html">Товари та Послуги</a></li>
+    <li><a href="${b}portfolio.html">Наші роботи</a></li>
+    <li><a href="${b}about.html">Про нас</a></li>
+    <li><a href="${b}blog.html">Блог</a></li>
+    <li><a href="${b}contacts.html">Контакти</a></li>
   </ul>
   <div class="mobile-menu-bottom">
     <a class="nav-phone" href="tel:+380963046234">+38 (096) 304-62-34</a>
-    <a href="contacts.html" class="btn btn-primary">Замовити</a>
+    <a href="${b}contacts.html" class="btn btn-primary">Замовити</a>
   </div>
 </div>`;
 }
@@ -78,31 +95,32 @@ function renderFooter() {
   if (!el) return;
 
   const year = new Date().getFullYear();
+  const b = basePath;
 
   el.innerHTML = `
 <footer>
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="images/logo.jpg" alt="ВікнаДім">
+        <img src="${b}images/logo.jpg" alt="ВікнаДім">
         <p>Виробник, монтажник металопластикових та алюмінієвих конструкцій, цільноскляних систем, сонцезахисту.</p>
       </div>
       <div class="footer-col">
         <h4>Товари та Послуги</h4>
         <ul>
-          <li><a href="services.html">Металопластикові конструкції</a></li>
-          <li><a href="services.html">Алюмінієві системи</a></li>
-          <li><a href="services.html">ЦільноСкляні конструкції</a></li>
-          <li><a href="services.html">Сонцезахист</a></li>
+          <li><a href="${b}services.html">Металопластикові конструкції</a></li>
+          <li><a href="${b}services.html">Алюмінієві системи</a></li>
+          <li><a href="${b}services.html">ЦільноСкляні конструкції</a></li>
+          <li><a href="${b}services.html">Сонцезахист</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Компанія</h4>
         <ul>
-          <li><a href="about.html">Про нас</a></li>
-          <li><a href="portfolio.html">Наші роботи</a></li>
-          <li><a href="blog.html">Блог</a></li>
-          <li><a href="contacts.html">Контакти</a></li>
+          <li><a href="${b}about.html">Про нас</a></li>
+          <li><a href="${b}portfolio.html">Наші роботи</a></li>
+          <li><a href="${b}blog.html">Блог</a></li>
+          <li><a href="${b}contacts.html">Контакти</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -116,7 +134,7 @@ function renderFooter() {
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; ${year} ВікнаДім. Усі права захищені. <a href="privacy.html" class="footer-privacy">Політика конфіденційності</a></span>
+      <span>&copy; ${year} ВікнаДім. Усі права захищені. <a href="${b}privacy.html" class="footer-privacy">Політика конфіденційності</a></span>
       <div class="footer-social">
         <a href="#" aria-label="Facebook">fb</a>
         <a href="#" aria-label="Instagram">ig</a>

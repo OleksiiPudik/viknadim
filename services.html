@@ -7,430 +7,588 @@
   Тому шляхи до CSS/JS/images однакові: css/style.css, images/logo.jpg
 -->
 <html lang="uk">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Послуги — ВікнаДім</title>
-  <meta name="description" content="Металопластикові вікна та двері, алюмінієві системи і фасади, цільноскляні конструкції, жалюзі та штори. Виробництво і монтаж у Дніпрі.">
+  <meta name="description"
+    content="Металопластикові вікна та двері, алюмінієві системи і фасади, цільноскляні конструкції, жалюзі та штори. Виробництво і монтаж у Дніпрі.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Unbounded:wght@300;400;500&display=swap"
+    rel="stylesheet">
 
   <!-- Один і той самий style.css що й на головній -->
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      HEADER + МОБІЛЬНЕ МЕНЮ
      Вставляються автоматично з js/components.js
      ══════════════════════════════════════════ -->
-<div id="site-header"></div>
+  <div id="site-header"></div>
 
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      PAGE HERO — заголовок сторінки
      ══════════════════════════════════════════ -->
-<section class="page-hero">
-  <div class="container">
-    <div class="page-hero-inner">
-      <div class="page-hero-text">
-        <!-- Хлібні крихти: показують де знаходиться користувач -->
-        <div class="breadcrumbs">
-          <a href="index.html">Головна</a>
-          <span class="breadcrumbs-sep">/</span>
-          <span>Послуги</span>
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-hero-text">
+          <!-- Хлібні крихти: показують де знаходиться користувач -->
+          <div class="breadcrumbs">
+            <a href="index.html">Головна</a>
+            <span class="breadcrumbs-sep">/</span>
+            <span>Послуги</span>
+          </div>
+          <div class="section-tag">Що ми робимо</div>
+          <h1>Наші <span>послуги</span></h1>
+          <p>Повний цикл виготовлення та монтажу — металопластик, алюміній, скло, сонцезахист. Від консультації до здачі
+            об'єкту.</p>
         </div>
-        <div class="section-tag">Що ми робимо</div>
-        <h1>Наші <span>послуги</span></h1>
-        <p>Повний цикл виготовлення та монтажу — металопластик, алюміній, скло, сонцезахист. Від консультації до здачі об'єкту.</p>
+        <!-- Кнопка праворуч від заголовка -->
+        <a href="contacts.html" class="btn btn-primary">Безкоштовна консультація</a>
       </div>
-      <!-- Кнопка праворуч від заголовка -->
-      <a href="contacts.html" class="btn btn-primary">Безкоштовна консультація</a>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      НАВІГАЦІЯ ПО КАТЕГОРІЯХ + БЛОКИ ПОСЛУГ
      ══════════════════════════════════════════ -->
-<section class="services-page">
-  <div class="container">
+  <section class="services-page">
+    <div class="container">
 
-    <!--
+      <!--
       Таби-навігація: при кліку JS прокручує до потрібної секції.
       id кнопки відповідає href="#id-секції"
     -->
-    <nav class="services-nav">
-      <button class="services-nav-btn active" data-target="metaplastic">
-        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="1"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-        Металопластик
-      </button>
-      <button class="services-nav-btn" data-target="aluminium">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 8h18M3 16h18M8 3v18"/></svg>
-        Алюмінієві системи
-      </button>
-      <button class="services-nav-btn" data-target="accessories">
-        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-        Комплектуючі
-      </button>
-      <button class="services-nav-btn" data-target="glass">
-        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="9" y1="2" x2="9" y2="22"/></svg>
-        Цільноскляні конструкції
-      </button>
-      <button class="services-nav-btn" data-target="sunprotect">
-        <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="4" y1="14" x2="20" y2="14"/><line x1="4" y1="18" x2="20" y2="18"/><rect x="2" y="4" width="2" height="16" rx="1"/></svg>
-        Сонцезахист
-      </button>
-    </nav>
+      <nav class="services-nav">
+        <button class="services-nav-btn active" data-target="metaplastic">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="1" />
+            <line x1="12" y1="2" x2="12" y2="22" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+          </svg>
+          Металопластик
+        </button>
+        <button class="services-nav-btn" data-target="aluminium">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="1" />
+            <path d="M3 8h18M3 16h18M8 3v18" />
+          </svg>
+          Алюмінієві системи
+        </button>
+        <button class="services-nav-btn" data-target="accessories">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+          </svg>
+          Комплектуючі
+        </button>
+        <button class="services-nav-btn" data-target="glass">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="2" />
+            <line x1="2" y1="9" x2="22" y2="9" />
+            <line x1="9" y1="2" x2="9" y2="22" />
+          </svg>
+          Цільноскляні конструкції
+        </button>
+        <button class="services-nav-btn" data-target="sunprotect">
+          <svg viewBox="0 0 24 24">
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="10" x2="20" y2="10" />
+            <line x1="4" y1="14" x2="20" y2="14" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+            <rect x="2" y="4" width="2" height="16" rx="1" />
+          </svg>
+          Сонцезахист
+        </button>
+      </nav>
 
 
-    <!-- ──── ПОСЛУГА 1: МЕТАЛОПЛАСТИК ──── -->
-    <div class="service-block fade-up" id="metaplastic">
-      <div class="service-block-img">
-        <img
-          src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80"
-          alt="Металопластикові вікна"
-        >
-        <div class="img-badge">Найпопулярніше</div>
-      </div>
-      <div class="service-block-content">
-        <!-- <div class="section-tag">Послуга 01</div> -->
-        <h2>Металопластикові <span>вікна та двері</span></h2>
-        <p>Виготовляємо металопластикові конструкції будь-якої складності на власному виробництві. Використовуємо профілі провідних світових брендів та якісну фурнітуру.</p>
+      <!-- ──── ПОСЛУГА 1: МЕТАЛОПЛАСТИК ──── -->
+      <div class="service-block fade-up" id="metaplastic">
+        <a href="services/metaplastic.html" class="service-block-img">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80" alt="Металопластикові вікна">
+          <div class="img-badge">Найпопулярніше</div>
+        </a>
+        <div class="service-block-content">
+          <!-- <div class="section-tag">Послуга 01</div> -->
+          <h2>Металопластикові <span>вікна та двері</span></h2>
+          <p>Виготовляємо металопластикові конструкції будь-якої складності на власному виробництві. Використовуємо
+            профілі провідних світових брендів та якісну фурнітуру.</p>
 
-        <div class="sub-services">
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-            Вікна одно- та двостулкові
+          <div class="sub-services">
+            <a href="services/metaplastic/wds/vikna.html" class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" />
+                <line x1="12" y1="2" x2="12" y2="22" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+              </svg>
+              Вікна
+            </a>
+            <a href="services/metaplastic/wds/dveri.html" class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="2" width="18" height="22" rx="1" />
+                <line x1="3" y1="8" x2="21" y2="8" />
+              </svg>
+              Двері
+            </a>
+            <a href="services/metaplastic/wds/balkony-ta-lodzhii.html" class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 3h18v18H3z" />
+                <path d="M3 12h18M12 3v18" />
+              </svg>
+              Балкони та лоджії
+            </a>
+            <a href="services/metaplastic/wds/fasady-ta-peregorodky.html" class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="1" />
+                <path d="M2 8h20M8 2v20" />
+              </svg>
+              Фасади та перегородки
+            </a>
+            <a href="services/metaplastic/wds/rozsuvni-systemy.html" class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="4" width="20" height="16" rx="1" />
+                <path d="M12 4v16" />
+                <path d="M15 10l3 2-3 2" />
+              </svg>
+              Розсувні системи
+            </a>
+            <a href="services/metaplastic/wds/konstruktsii.html" class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2l9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9l9-7z" />
+                <path d="M9 22V12h6v10" />
+              </svg>
+              Конструкції які потрібні саме вам
+            </a>
           </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="3" y="2" width="18" height="22" rx="1"/><line x1="3" y1="8" x2="21" y2="8"/></svg>
-            Двері вхідні та балконні
+
+          <div class="service-advantages">
+            <h4>Профілі на вибір</h4>
+            <div class="adv-list">
+              <div class="adv-item">
+                <div class="adv-dot"></div><span><strong>REHAU</strong> — німецька якість, преміум-сегмент, широкий
+                  вибір кольорів і декорів</span>
+              </div>
+              <div class="adv-item">
+                <div class="adv-dot"></div><span><strong>Veka</strong> — надійний профіль, відмінна тепло- та
+                  звукоізоляція</span>
+              </div>
+              <div class="adv-item">
+                <div class="adv-dot"></div><span><strong>KBE</strong> — оптимальне співвідношення ціни та якості</span>
+              </div>
+            </div>
           </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 12h18M12 3v18"/></svg>
-            Французькі балкони
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="1"/><path d="M2 12h20"/><path d="M7 7V4a5 5 0 0110 0v3"/></svg>
-            Нестандартні форми
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 010 20"/></svg>
-            Арочні та трикутні
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-            Мансардні вікна
-          </div>
+
+          <a href="services/metaplastic.html" class="btn btn-primary">Детальніше</a>
         </div>
-
-        <div class="service-advantages">
-          <h4>Профілі на вибір</h4>
-          <div class="adv-list">
-            <div class="adv-item"><div class="adv-dot"></div><span><strong>REHAU</strong> — німецька якість, преміум-сегмент, широкий вибір кольорів і декорів</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span><strong>Veka</strong> — надійний профіль, відмінна тепло- та звукоізоляція</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span><strong>KBE</strong> — оптимальне співвідношення ціни та якості</span></div>
-          </div>
-        </div>
-
-        <a href="contacts.html" class="btn btn-primary">Детальніше</a>
       </div>
-    </div>
 
 
-    <!-- ──── ПОСЛУГА 2: АЛЮМІНІЙ (чергування — фото справа) ──── -->
-    <div class="service-block reverse fade-up" id="aluminium">
-      <div class="service-block-img">
-        <img
-          src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80"
-          alt="Алюмінієві системи та фасади"
-        >
-        <div class="img-badge">Для бізнесу</div>
-      </div>
-      <div class="service-block-content">
-        <!-- <div class="section-tag">Послуга 02</div> -->
-        <h2>Алюмінієві системи <span>та фасади</span></h2>
-        <p>Алюмінієві конструкції — ідеальне рішення для комерційних об'єктів, великих прорізів і сучасних фасадів. Легкі, міцні, довговічні.</p>
+      <!-- ──── ПОСЛУГА 2: АЛЮМІНІЙ (чергування — фото справа) ──── -->
+      <div class="service-block reverse fade-up" id="aluminium">
+        <a href="services/aluminium.html" class="service-block-img">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80"
+            alt="Алюмінієві системи та фасади">
+          <div class="img-badge">Для бізнесу</div>
+        </a>
+        <div class="service-block-content">
+          <!-- <div class="section-tag">Послуга 02</div> -->
+          <h2>Алюмінієві системи <span>та фасади</span></h2>
+          <p>Алюмінієві конструкції — ідеальне рішення для комерційних об'єктів, великих прорізів і сучасних фасадів.
+            Легкі, міцні, довговічні.</p>
 
-        <div class="sub-services">
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20"/><line x1="2" y1="8" x2="22" y2="8"/></svg>
-            Теплий алюмінієвий профіль
+          <div class="sub-services">
+            <div class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" />
+                <line x1="2" y1="8" x2="22" y2="8" />
+              </svg>
+              Теплий алюмінієвий профіль
+            </div>
+            <div class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" />
+                <line x1="2" y1="8" x2="22" y2="8" />
+                <line x1="2" y1="16" x2="22" y2="16" />
+              </svg>
+              Холодний профіль
+            </div>
+            <div class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" />
+                <path d="M8 2v20M16 2v20" />
+              </svg>
+              Структурне скління
+            </div>
+            <div class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 3h14M5 21h14M3 5v14M21 5v14" />
+              </svg>
+              Вентильовані фасади
+            </div>
+            <div class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 3H3v18h18V3z" />
+                <path d="M3 12h18M3 3l9 9 9-9" />
+              </svg>
+              Підйомно-розсувні двері
+            </div>
+            <div class="sub-service-item">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="4" width="20" height="16" rx="1" />
+                <path d="M12 4v16" />
+              </svg>
+              Розсувні перегородки
+            </div>
           </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="2" y1="16" x2="22" y2="16"/></svg>
-            Холодний профіль
+
+          <div class="service-advantages">
+            <h4>Переваги алюмінію</h4>
+            <div class="adv-list">
+              <div class="adv-item">
+                <div class="adv-dot"></div><span>Мінімальна ширина рами — максимальна площа скла та світла</span>
+              </div>
+              <div class="adv-item">
+                <div class="adv-dot"></div><span>Строк служби понад 50 років без деформацій і корозії</span>
+              </div>
+              <div class="adv-item">
+                <div class="adv-dot"></div><span>Будь-який колір по RAL — понад 200 відтінків</span>
+              </div>
+            </div>
           </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20"/><path d="M8 2v20M16 2v20"/></svg>
-            Структурне скління
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M5 3h14M5 21h14M3 5v14M21 5v14"/></svg>
-            Вентильовані фасади
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M21 3H3v18h18V3z"/><path d="M3 12h18M3 3l9 9 9-9"/></svg>
-            Підйомно-розсувні двері
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="M12 4v16"/></svg>
-            Розсувні перегородки
-          </div>
+
+          <<<<<<< HEAD <a href="contacts.html" class="btn btn-primary">Детальніше</a>
+            =======
+            <a href="services/aluminium.html" class="btn btn-primary">Детальніше</a>
+            <!-- ──── ПОСЛУГА 3: КОМПЛЕКТУЮЧІ ──── -->
+            <div class="service-block fade-up" id="accessories">
+              <a href="services/accessories.html" class="service-block-img">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
+                  alt="Комплектуючі до вікон та дверей">
+                <div class="img-badge">Аксесуари</div>
+              </a>
+              <div class="service-block-content">
+                <h2>Комплектуючі <span>до вікон та дверей</span></h2>
+                <p>Підвіконня, відливи, москітні сітки, відкоси та фурнітура — все, що потрібно для завершеного вигляду
+                  та комфортної експлуатації вікон і дверей.</p>
+
+                <div class="sub-services">
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="2" y="14" width="20" height="4" rx="1" />
+                      <line x1="5" y1="14" x2="5" y2="10" />
+                      <line x1="19" y1="14" x2="19" y2="10" />
+                    </svg>
+                    Підвіконня
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M2 18h20l-2-6H4l-2 6z" />
+                      <line x1="4" y1="12" x2="4" y2="8" />
+                      <line x1="20" y1="12" x2="20" y2="8" />
+                    </svg>
+                    Відливи
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="3" width="18" height="18" rx="1" />
+                      <line x1="3" y1="8" x2="21" y2="8" />
+                      <line x1="3" y1="13" x2="21" y2="13" />
+                      <line x1="3" y1="18" x2="21" y2="18" />
+                      <line x1="8" y1="3" x2="8" y2="21" />
+                      <line x1="13" y1="3" x2="13" y2="21" />
+                      <line x1="18" y1="3" x2="18" y2="21" />
+                    </svg>
+                    Москітні сітки
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="2" y="2" width="20" height="20" rx="1" />
+                      <path d="M2 8h20" />
+                      <path d="M8 2v6" />
+                    </svg>
+                    Відкоси та укоси
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="3" />
+                      <path
+                        d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                    </svg>
+                    Фурнітура та ручки
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="3" width="18" height="18" rx="2" />
+                      <path d="M3 9h18" />
+                      <path d="M9 3v6" />
+                    </svg>
+                    Ковпачки та накладки
+                  </div>
+                </div>
+
+                <div class="service-advantages">
+                  <h4>Переваги</h4>
+                  <div class="adv-list">
+                    <div class="adv-item">
+                      <div class="adv-dot"></div><span>Оригінальні комплектуючі від виробників профільних систем</span>
+                    </div>
+                    <div class="adv-item">
+                      <div class="adv-dot"></div><span>Широкий вибір кольорів та текстур під будь-який інтер'єр</span>
+                    </div>
+                    <div class="adv-item">
+                      <div class="adv-dot"></div><span>Монтаж у комплексі з вікнами або окремо — заміна та
+                        оновлення</span>
+                    </div>
+                  </div>
+                </div>
+
+                <a href="services/accessories.html" class="btn btn-primary">Детальніше</a>
+              </div>
+            </div>
+
+
+            <!-- ──── ПОСЛУГА 4: ЦІЛЬНОСКЛЯНІ (чергування — фото справа) ──── -->
+            <div class="service-block reverse fade-up" id="glass">
+              <a href="services/glass.html" class="service-block-img">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+                  alt="Цільноскляні конструкції">
+                <div class="img-badge">Преміум</div>
+              </a>
+              <div class="service-block-content">
+                <!-- <div class="section-tag">Послуга 03</div> -->
+                <h2>Цільноскляні <span>конструкції</span></h2>
+                <p>Скляні перегородки, душові, сходи — це архітектурні акценти, що роблять простір відкритим і сучасним.
+                  Монтуємо конструкції без видимих рам.</p>
+
+                <div class="sub-services">
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="2" y="2" width="20" height="20" rx="2" />
+                    </svg>
+                    Офісні перегородки
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M3 6h18M3 18h18M8 6v12M16 6v12" />
+                    </svg>
+                    Душові кабіни та огородження
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M4 5h16M4 9h16M4 13h16M4 17h16" />
+                    </svg>
+                    Скляні перила та поручні
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M3 21l9-18 9 18H3z" />
+                    </svg>
+                    Скляні сходи
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="3" width="18" height="18" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    Декоративне скло
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="3" width="18" height="18" rx="9" />
+                    </svg>
+                    Скляні двері безрамні
+                  </div>
+                </div>
+
+                <div class="service-advantages">
+                  <h4>Типи скла</h4>
+                  <div class="adv-list">
+                    <div class="adv-item">
+                      <div class="adv-dot"></div><span><strong>Загартоване</strong> — у 5 разів міцніше звичайного,
+                        безпечне при руйнуванні</span>
+                    </div>
+                    <div class="adv-item">
+                      <div class="adv-dot"></div><span><strong>Триплекс</strong> — плівка між шарами не дозволяє
+                        осколкам розлетітися</span>
+                    </div>
+                    <div class="adv-item">
+                      <div class="adv-dot"></div><span><strong>Матове та тонування</strong> — будь-який ступінь
+                        прозорості та кольору</span>
+                    </div>
+                  </div>
+                </div>
+
+                <a href="services/glass.html" class="btn btn-primary">Детальніше</a>
+              </div>
+            </div>
+
+
+            <!-- ──── ПОСЛУГА 5: СОНЦЕЗАХИСТ ──── -->
+            <div class="service-block fade-up" id="sunprotect">
+              <a href="services/sunprotect.html" class="service-block-img">
+                <img src="https://images.unsplash.com/photo-1618220048045-10a6dbdf83e0?w=800&q=80"
+                  alt="Сонцезахисні рішення">
+                <div class="img-badge">Комфорт</div>
+              </a>
+              <div class="service-block-content">
+                <h2>Сонцезахисні <span>рішення</span></h2>
+                <p>Жалюзі, рулонні та римські штори, плісе — захист від сонця з можливістю автоматизації. Підбираємо
+                  рішення під будь-яке вікно.</p>
+
+                <div class="sub-services">
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="3" width="18" height="18" rx="1" />
+                      <path d="M3 8h18M3 13h18" />
+                    </svg>
+                    Рулонні штори
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <line x1="4" y1="6" x2="20" y2="6" />
+                      <line x1="4" y1="10" x2="20" y2="10" />
+                      <line x1="4" y1="14" x2="20" y2="14" />
+                      <line x1="4" y1="18" x2="20" y2="18" />
+                    </svg>
+                    Горизонтальні жалюзі
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M3 3h18v4H3zM3 10h18v4H3zM3 17h18v4H3z" />
+                    </svg>
+                    Римські штори
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M3 3h18v18H3z" />
+                      <path d="M3 7l18-4M3 11l18-4M3 15l18-4M3 19l18-4" />
+                    </svg>
+                    Штори плісе
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <line x1="4" y1="4" x2="4" y2="20" />
+                      <line x1="8" y1="4" x2="8" y2="20" />
+                      <line x1="12" y1="4" x2="12" y2="20" />
+                      <line x1="16" y1="4" x2="16" y2="20" />
+                      <line x1="20" y1="4" x2="20" y2="20" />
+                    </svg>
+                    Вертикальні жалюзі
+                  </div>
+                  <div class="sub-service-item">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="3" />
+                      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4" />
+                    </svg>
+                    Моторизовані системи
+                  </div>
+                </div>
+
+                <div class="service-advantages">
+                  <h4>Асортимент</h4>
+                  <div class="adv-list">
+                    <div class="adv-item">
+                      <div class="adv-dot"></div><span><strong>День-ніч та Black Out</strong> — від напівпрозорих до
+                        повного затемнення</span>
+                    </div>
+                    <div class="adv-item">
+                      <div class="adv-dot"></div><span><strong>Понад 200 кольорів</strong> тканин, алюмінію, дерева та
+                        бамбуку</span>
+                    </div>
+                    <div class="adv-item">
+                      <div class="adv-dot"></div><span><strong>Нестандартні форми</strong> — мансардні, трикутні,
+                        трапецієподібні вікна</span>
+                    </div>
+                  </div>
+                </div>
+
+                <a href="services/sunprotect.html" class="btn btn-primary">Детальніше</a>
+              </div>
+            </div>
+
         </div>
-
-        <div class="service-advantages">
-          <h4>Переваги алюмінію</h4>
-          <div class="adv-list">
-            <div class="adv-item"><div class="adv-dot"></div><span>Мінімальна ширина рами — максимальна площа скла та світла</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span>Строк служби понад 50 років без деформацій і корозії</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span>Будь-який колір по RAL — понад 200 відтінків</span></div>
-          </div>
-        </div>
-
-        <a href="contacts.html" class="btn btn-primary">Детальніше</a>
-      </div>
-    </div>
+  </section>
 
 
-    <!-- ──── ПОСЛУГА 3: КОМПЛЕКТУЮЧІ ──── -->
-    <div class="service-block fade-up" id="accessories">
-      <div class="service-block-img">
-        <img
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
-          alt="Комплектуючі до вікон та дверей"
-        >
-        <div class="img-badge">Аксесуари</div>
-      </div>
-      <div class="service-block-content">
-        <h2>Комплектуючі <span>до вікон та дверей</span></h2>
-        <p>Підвіконня, відливи, москітні сітки, відкоси та фурнітура — все, що потрібно для завершеного вигляду та комфортної експлуатації вікон і дверей.</p>
-
-        <div class="sub-services">
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="2" y="14" width="20" height="4" rx="1"/><line x1="5" y1="14" x2="5" y2="10"/><line x1="19" y1="14" x2="19" y2="10"/></svg>
-            Підвіконня
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M2 18h20l-2-6H4l-2 6z"/><line x1="4" y1="12" x2="4" y2="8"/><line x1="20" y1="12" x2="20" y2="8"/></svg>
-            Відливи
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="3" y1="18" x2="21" y2="18"/><line x1="8" y1="3" x2="8" y2="21"/><line x1="13" y1="3" x2="13" y2="21"/><line x1="18" y1="3" x2="18" y2="21"/></svg>
-            Москітні сітки
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="1"/><path d="M2 8h20"/><path d="M8 2v6"/></svg>
-            Відкоси та укоси
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-            Фурнітура та ручки
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v6"/></svg>
-            Ковпачки та накладки
-          </div>
-        </div>
-
-        <div class="service-advantages">
-          <h4>Переваги</h4>
-          <div class="adv-list">
-            <div class="adv-item"><div class="adv-dot"></div><span>Оригінальні комплектуючі від виробників профільних систем</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span>Широкий вибір кольорів та текстур під будь-який інтер'єр</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span>Монтаж у комплексі з вікнами або окремо — заміна та оновлення</span></div>
-          </div>
-        </div>
-
-        <a href="contacts.html" class="btn btn-primary">Детальніше</a>
-      </div>
-    </div>
-
-
-    <!-- ──── ПОСЛУГА 4: ЦІЛЬНОСКЛЯНІ (чергування — фото справа) ──── -->
-    <div class="service-block reverse fade-up" id="glass">
-      <div class="service-block-img">
-        <img
-          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
-          alt="Цільноскляні конструкції"
-        >
-        <div class="img-badge">Преміум</div>
-      </div>
-      <div class="service-block-content">
-        <!-- <div class="section-tag">Послуга 03</div> -->
-        <h2>Цільноскляні <span>конструкції</span></h2>
-        <p>Скляні перегородки, душові, сходи — це архітектурні акценти, що роблять простір відкритим і сучасним. Монтуємо конструкції без видимих рам.</p>
-
-        <div class="sub-services">
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/></svg>
-            Офісні перегородки
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M3 6h18M3 18h18M8 6v12M16 6v12"/></svg>
-            Душові кабіни та огородження
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M4 5h16M4 9h16M4 13h16M4 17h16"/></svg>
-            Скляні перила та поручні
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M3 21l9-18 9 18H3z"/></svg>
-            Скляні сходи
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/><circle cx="12" cy="12" r="3"/></svg>
-            Декоративне скло
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="9"/></svg>
-            Скляні двері безрамні
-          </div>
-        </div>
-
-        <div class="service-advantages">
-          <h4>Типи скла</h4>
-          <div class="adv-list">
-            <div class="adv-item"><div class="adv-dot"></div><span><strong>Загартоване</strong> — у 5 разів міцніше звичайного, безпечне при руйнуванні</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span><strong>Триплекс</strong> — плівка між шарами не дозволяє осколкам розлетітися</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span><strong>Матове та тонування</strong> — будь-який ступінь прозорості та кольору</span></div>
-          </div>
-        </div>
-
-        <a href="contacts.html" class="btn btn-primary">Детальніше</a>
-      </div>
-    </div>
-
-
-    <!-- ──── ПОСЛУГА 5: СОНЦЕЗАХИСТ ──── -->
-    <div class="service-block fade-up" id="sunprotect">
-      <div class="service-block-img">
-        <img
-          src="https://images.unsplash.com/photo-1618220048045-10a6dbdf83e0?w=800&q=80"
-          alt="Сонцезахисні рішення"
-        >
-        <div class="img-badge">Комфорт</div>
-      </div>
-      <div class="service-block-content">
-        <h2>Сонцезахисні <span>рішення</span></h2>
-        <p>Жалюзі, рулонні та римські штори, плісе — захист від сонця з можливістю автоматизації. Підбираємо рішення під будь-яке вікно.</p>
-
-        <div class="sub-services">
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 8h18M3 13h18"/></svg>
-            Рулонні штори
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="4" y1="14" x2="20" y2="14"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-            Горизонтальні жалюзі
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M3 3h18v4H3zM3 10h18v4H3zM3 17h18v4H3z"/></svg>
-            Римські штори
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 7l18-4M3 11l18-4M3 15l18-4M3 19l18-4"/></svg>
-            Штори плісе
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><line x1="4" y1="4" x2="4" y2="20"/><line x1="8" y1="4" x2="8" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="16" y1="4" x2="16" y2="20"/><line x1="20" y1="4" x2="20" y2="20"/></svg>
-            Вертикальні жалюзі
-          </div>
-          <div class="sub-service-item">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
-            Моторизовані системи
-          </div>
-        </div>
-
-        <div class="service-advantages">
-          <h4>Асортимент</h4>
-          <div class="adv-list">
-            <div class="adv-item"><div class="adv-dot"></div><span><strong>День-ніч та Black Out</strong> — від напівпрозорих до повного затемнення</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span><strong>Понад 200 кольорів</strong> тканин, алюмінію, дерева та бамбуку</span></div>
-            <div class="adv-item"><div class="adv-dot"></div><span><strong>Нестандартні форми</strong> — мансардні, трикутні, трапецієподібні вікна</span></div>
-          </div>
-        </div>
-
-        <a href="contacts.html" class="btn btn-primary">Підібрати сонцезахист</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      ПРОЦЕС РОБОТИ
      ══════════════════════════════════════════ -->
-<section class="process">
-  <div class="container">
-    <div class="process-header fade-up">
-      <div class="section-tag">Як ми працюємо</div>
-      <h2 class="section-title">Процес від заявки <span>до результату</span></h2>
+  <section class="process">
+    <div class="container">
+      <div class="process-header fade-up">
+        <div class="section-tag">Як ми працюємо</div>
+        <h2 class="section-title">Процес від заявки <span>до результату</span></h2>
+      </div>
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <div class="step-num">01</div>
+          <h4>Заявка</h4>
+          <p>Телефонуєте або залишаєте заявку на сайті</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-num">02</div>
+          <h4>Замір</h4>
+          <p>Безкоштовний виїзд замірника у зручний час</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-num">03</div>
+          <h4>Кошторис</h4>
+          <p>Детальний розрахунок вартості та термінів</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-num">04</div>
+          <h4>Виробництво</h4>
+          <p>Виготовлення на власному заводі 10–14 днів</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-num">05</div>
+          <h4>Монтаж</h4>
+          <p>Установка та здача об'єкту з гарантією</p>
+        </div>
+      </div>
     </div>
-    <div class="process-steps">
-      <div class="process-step fade-up">
-        <div class="step-num">01</div>
-        <h4>Заявка</h4>
-        <p>Телефонуєте або залишаєте заявку на сайті</p>
-      </div>
-      <div class="process-step fade-up">
-        <div class="step-num">02</div>
-        <h4>Замір</h4>
-        <p>Безкоштовний виїзд замірника у зручний час</p>
-      </div>
-      <div class="process-step fade-up">
-        <div class="step-num">03</div>
-        <h4>Кошторис</h4>
-        <p>Детальний розрахунок вартості та термінів</p>
-      </div>
-      <div class="process-step fade-up">
-        <div class="step-num">04</div>
-        <h4>Виробництво</h4>
-        <p>Виготовлення на власному заводі 10–14 днів</p>
-      </div>
-      <div class="process-step fade-up">
-        <div class="step-num">05</div>
-        <h4>Монтаж</h4>
-        <p>Установка та здача об'єкту з гарантією</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      CTA — заклик до дії (той самий що й на головній)
      ══════════════════════════════════════════ -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-inner fade-up">
-      <div class="section-tag">Готові до вашого проєкту</div>
-      <h2>Залиште заявку —<br>ми зв'яжемось за <span>30 хвилин</span></h2>
-      <p>Безкоштовний замір, детальний кошторис і жодних зобов'язань.</p>
-      <div class="cta-actions">
-        <a href="contacts.html" class="btn btn-white">Замовити замір</a>
-        <a href="tel:+380671234567" class="btn btn-ghost">+38 (067) 123-45-67</a>
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner fade-up">
+        <div class="section-tag">Готові до вашого проєкту</div>
+        <h2>Залиште заявку —<br>ми зв'яжемось за <span>30 хвилин</span></h2>
+        <p>Безкоштовний замір, детальний кошторис і жодних зобов'язань.</p>
+        <div class="cta-actions">
+          <a href="contacts.html" class="btn btn-white">Замовити замір</a>
+          <a href="tel:+380671234567" class="btn btn-ghost">+38 (067) 123-45-67</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      FOOTER — вставляється з js/components.js
      ══════════════════════════════════════════ -->
-<div id="site-footer"></div>
+  <div id="site-footer"></div>
 
 
-<script src="js/components.js"></script>
-<script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
 
-<!--
+  <!--
   Додатковий JS тільки для цієї сторінки:
   таби-навігація по категоріях послуг.
 
@@ -440,30 +598,31 @@
   і шукати елементи яких там немає (хоча це не критично,
   але краще тримати код організованим).
 -->
-<script>
-  // Таби-навігація: плавна прокрутка до секції
-  const navBtns = document.querySelectorAll('.services-nav-btn');
+  <script>
+    // Таби-навігація: плавна прокрутка до секції
+    const navBtns = document.querySelectorAll('.services-nav-btn');
 
-  navBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      // Знімаємо .active з усіх кнопок
-      navBtns.forEach(b => b.classList.remove('active'));
-      // Додаємо .active на натиснуту
-      this.classList.add('active');
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        // Знімаємо .active з усіх кнопок
+        navBtns.forEach(b => b.classList.remove('active'));
+        // Додаємо .active на натиснуту
+        this.classList.add('active');
 
-      // Знаходимо цільову секцію за data-target
-      const targetId = this.dataset.target; // наприклад "metaplastic"
-      const target = document.getElementById(targetId);
+        // Знаходимо цільову секцію за data-target
+        const targetId = this.dataset.target; // наприклад "metaplastic"
+        const target = document.getElementById(targetId);
 
-      if (target) {
-        // Прокручуємо з урахуванням хедера (70px) + таб-навігації (~57px)
-        const offset = 70 + 57 + 20;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
+        if (target) {
+          // Прокручуємо з урахуванням хедера (70px) + таб-навігації (~57px)
+          const offset = 70 + 57 + 20;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
+
 </html>

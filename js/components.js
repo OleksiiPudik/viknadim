@@ -136,9 +136,9 @@ function renderFooter() {
     <div class="footer-bottom">
       <span>&copy; ${year} ВікнаДім. Усі права захищені. <a href="${b}privacy.html" class="footer-privacy">Політика конфіденційності</a></span>
       <div class="footer-social">
-        <a href="#" aria-label="Facebook">fb</a>
-        <a href="#" aria-label="Instagram">ig</a>
-        <a href="#" aria-label="Telegram">tg</a>
+        <a href="https://www.facebook.com/profile.php?id=61586546707363" target="_blank" rel="noopener" aria-label="Facebook">fb</a>
+        <a href="https://www.instagram.com/vikna_dim/" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+        <a href="https://www.threads.com/@vikna_dim?hl=ru" target="_blank" rel="noopener" aria-label="Threads">th</a>
       </div>
     </div>
   </div>

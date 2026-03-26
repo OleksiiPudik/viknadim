@@ -1,0 +1,7 @@
+# ВікнаДім — robots.txt
+User-agent: *
+Allow: /
+
+Disallow: /404.html
+
+Sitemap: https://viknadim.dp.ua/sitemap.xml

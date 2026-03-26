@@ -147,9 +147,123 @@ function renderFooter() {
 
 
 /* ─────────────────────────────────────────────
+   SEO: CANONICAL TAG
+   Додає <link rel="canonical"> автоматично
+   на кожну сторінку на основі поточного URL.
+   ───────────────────────────────────────────── */
+function addCanonical() {
+  const domain = 'https://viknadim.dp.ua';
+  // Визначаємо шлях сторінки відносно кореня сайту
+  let path = location.pathname;
+  // Прибираємо index.html з кінця — канонічний URL головної = /
+  if (path.endsWith('/index.html')) {
+    path = path.substring(0, path.lastIndexOf('/') + 1);
+  }
+  const link = document.createElement('link');
+  link.rel = 'canonical';
+  link.href = domain + path;
+  document.head.appendChild(link);
+}
+
+
+/* ─────────────────────────────────────────────
+   SEO: STRUCTURED DATA (JSON-LD)
+   — LocalBusiness schema на головній сторінці
+   — BreadcrumbList на сторінках із хлібними крихтами
+   ───────────────────────────────────────────── */
+function addStructuredData() {
+  const domain = 'https://viknadim.dp.ua';
+
+  // LocalBusiness — тільки на головній
+  const isHome = location.pathname === '/' ||
+                 location.pathname.endsWith('/index.html') ||
+                 location.pathname.endsWith('/');
+  if (isHome) {
+    const business = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ВікнаДім",
+      "description": "Виготовляємо та встановлюємо вікна, двері, алюмінієві фасади, цільноскляні конструкції та сонцезахист у Дніпрі. Гарантія 5 років.",
+      "url": domain,
+      "telephone": ["+380963046234", "+380996036351"],
+      "email": "oknadom.dp@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "пр. Слобожанський 95",
+        "addressLocality": "Дніпро",
+        "addressCountry": "UA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.51417972617358,
+        "longitude": 35.077707071846035
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61586546707363",
+        "https://www.instagram.com/vikna_dim/",
+        "https://www.threads.com/@vikna_dim"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "15:00"
+        }
+      ]
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(business);
+    document.head.appendChild(script);
+  }
+
+  // BreadcrumbList — на сторінках з breadcrumbs
+  const crumbs = document.querySelectorAll('.breadcrumbs a, .breadcrumbs > span:last-child');
+  if (crumbs.length > 0) {
+    const items = [];
+    crumbs.forEach(function(el, i) {
+      const item = {
+        "@type": "ListItem",
+        "position": i + 1
+      };
+      if (el.tagName === 'A') {
+        // Перетворюємо відносний href в абсолютний
+        item.name = el.textContent.trim();
+        item.item = el.href; // браузер автоматично робить абсолютний URL
+      } else {
+        // Останній елемент — поточна сторінка (span)
+        item.name = el.textContent.trim();
+      }
+      items.push(item);
+    });
+
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(breadcrumbSchema);
+    document.head.appendChild(script);
+  }
+}
+
+
+/* ─────────────────────────────────────────────
    АВТОЗАПУСК
    Як тільки браузер завантажує цей файл —
-   header і footer вставляються в DOM.
+   header, footer, canonical і structured data
+   вставляються в DOM.
    ───────────────────────────────────────────── */
 renderHeader();
 renderFooter();
+addCanonical();
+addStructuredData();

@@ -24,7 +24,7 @@ const PORTFOLIO = [
     title: "Скляний фасад заміського будинку",
     category: "metaplastic",
     tags: "Металопластик WDS",
-    image: "../images/index_page/portfolio/vertical.jpg",
+    image: "images/index_page/portfolio/vertical.jpg",
     city: "Губініха, Дніпропетровська обл.",
     year: "2022"
   },
@@ -33,7 +33,7 @@ const PORTFOLIO = [
     title: "Безрамне скління",
     category: "glass",
     tags: "Цільноскляна конструкція",
-    image: "../images/index_page/portfolio/gorizont_1.jpg",
+    image: "images/index_page/portfolio/gorizont_1.jpg",
     city: "Дніпро",
     year: "2024"
   },
@@ -42,7 +42,7 @@ const PORTFOLIO = [
     title: "Алюмінієві перегородки",
     category: "aluminium",
     tags: "Алюміній · Структурне скління",
-    image: "../images/index_page/portfolio/gorizont_2.jpg",
+    image: "images/index_page/portfolio/gorizont_2.jpg",
     city: "Дніпро",
     year: "2024"
   },
@@ -51,7 +51,7 @@ const PORTFOLIO = [
     title: "Терасса",
     category: "metaplastic",
     tags: "Металопластик WDS",
-    image: "../images/index_page/portfolio/gorizont_3.jpg",
+    image: "images/index_page/portfolio/gorizont_3.jpg",
     city: "Новоселівка, Дніпропетровська обл.",
     year: "2024"
   },
@@ -60,7 +60,7 @@ const PORTFOLIO = [
     title: "Ресторан в заміському комплексі",
     category: "metaplastic",
     tags: "Металопластик WDS",
-    image: "../images/index_page/portfolio/gorizont_4.jpg",
+    image: "images/index_page/portfolio/gorizont_4.jpg",
     city: "Обухівка, Дніпропетровська обл.",
     year: "2023"
   }

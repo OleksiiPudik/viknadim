@@ -62,7 +62,7 @@
         </div>
         <div class="section-tag">Реалізовані проєкти</div>
         <h1 id="pageTitle">Наше <span>портфоліо</span></h1>
-        <p id="pageDesc">Перегляньте наші реалізовані проєкти — від приватних помешкань до масштабних комерційних об'єктів.</p>
+        <p id="pageDesc">Перегляньте наші реалізовані проєкти — від приватних помешкань до масштабних комерційних та громадських об'єктів.</p>
       </div>
     </div>
   </div>
@@ -167,8 +167,8 @@ const CATEGORIES = [
     title: 'Вікна',
     description: 'Металопластикові та дерев\'яні вікна для квартир і будинків',
     /* Заглавні фото категорії — замініть на свої (600×400 px) */
-    img1: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80',
-    img2: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80'
+    img1: 'images/works/window/wind_main_1.webp',
+    img2: 'images/works/window/wind_main_2.webp'
   },
   {
     id: 'doors',
@@ -218,36 +218,61 @@ const CATEGORIES = [
 const PROJECTS = [
   /* ── Вікна ── */
   {
-    id: 'win-01',
+    id: 'win-008',
     category: 'windows',
     title: 'Панорамні вікна в котеджі',
     summary: 'Встановлення панорамних вікон REHAU з енергозберігаючим склопакетом.',
-    description: 'Повна заміна вікон у приватному котеджі на панорамні конструкції REHAU Geneo. Встановлено 12 віконних блоків з двокамерними енергозберігаючими склопакетами. Підвіконня з HPL-пластику.',
+    description: 'Заміна вікон та дверей у приватному котеджі на панорамні конструкції REHAU Geneo. Встановлено нові віконні блоки з енергозберігаючими склопакетами та шпросами всередині. Деякі вікна не міняли повністю, виконали тільки заміну склопакетів з аналогічними характеристиками, та зробили регулювання стулок.',
     city: 'Дніпро',
-    year: '2024',
-    date: '2024-11-15',
+    year: '2025',
+    date: '2025-11-15',
     /* Фото картки проєкту (800×530 px) */
-    cover: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
+    cover: 'images/works/window/w_008/w_008_cover.webp',
     /* Фото галереї (до 20 шт, 1600×1000 px для лайтбоксу) */
     images: [
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80'
+      'images/works/window/w_008/w_008_01.webp',
+      'images/works/window/w_008/w_008_02.webp',
+      'images/works/window/w_008/w_008_03.webp',
+      'images/works/window/w_008/w_008_04.webp',
+      'images/works/window/w_008/w_008_05.webp',
+      'images/works/window/w_008/w_008_06.webp',
+      'images/works/window/w_008/w_008_07.webp'
     ]
   },
   {
-    id: 'win-02',
+    id: 'win-004',
     category: 'windows',
-    title: 'Вікна в квартирі з шумоізоляцією',
-    summary: 'Металопластикові вікна з посиленою шумоізоляцією для квартири.',
-    description: 'Заміна старих вікон на металопластикові REHAU Brillant з триплекс-склопакетом для максимальної шумоізоляції. Квартира на 3 поверсі біля жвавої дороги — після заміни рівень шуму знизився на 42 дБ.',
-    city: 'Дніпро',
-    year: '2024',
+    title: 'Вікна та двері в заміській турбазі',
+    summary: 'Ламіновані металопластикові вікна та двері.',
+    description: 'Коли робиш вікна для будинків розташованих в лісі, важливо щоб вини за кольором підходили до навколишнього середовища. Для цього проєкту використан профіль WDS з замінацією Горіх.',
+    city: 'Обухівка, Дніпропетровска обл.',
+    year: '2023',
     date: '2024-09-20',
-    cover: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80',
+    cover: 'images/works/window/w_004/w_004_cover.webp',
     images: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80',
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80'
+      'images/works/window/w_004/w_004_01.webp',
+      'images/works/window/w_004/w_004_02.webp',
+      'images/works/window/w_004/w_004_03.webp',
+      'images/works/window/w_004/w_004_04.webp'
+    ]
+  },
+  {
+    id: 'win-002',
+    category: 'windows',
+    title: 'Вікна та двері в заміській турбазі',
+    summary: 'Металопластикові вікна та двері в сучасному стилі.',
+    description: 'В сучасних будівлях інколи важливо щоб вікна повторювали геометрію самої будівля чи її частин. Це легко реалізується за допомогою металопластикових та алюмінієвих конструкцій.',
+    city: 'Царічанка, Дніпропетровска обл.',
+    year: '2022',
+    date: '2022-10-05',
+    cover: 'images/works/window/w_002/w_002_cover.webp',
+    images: [
+      'images/works/window/w_002/w_002_01.webp',
+      'images/works/window/w_002/w_002_02.webp',
+      'images/works/window/w_002/w_002_03.webp',
+      'images/works/window/w_002/w_002_04.webp',
+      'images/works/window/w_002/w_002_05.webp',
+      'images/works/window/w_002/w_002_06.webp'
     ]
   },
 

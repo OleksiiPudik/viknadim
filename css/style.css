@@ -2691,6 +2691,31 @@ a.product-card-detailed {
   margin-bottom: 20px;
 }
 
+/* Список характеристик (назва — значення) */
+.spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.spec-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.spec-list li span:first-child {
+  color: var(--gray);
+  font-weight: 300;
+}
+.spec-list li span:last-child {
+  color: var(--graphite);
+  font-weight: 600;
+  text-align: right;
+}
+
 /* Зображення між абзацами — на повну ширину */
 .product-detail-img {
   width: 100%;

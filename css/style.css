@@ -2007,7 +2007,7 @@ a.product-card-detailed {
 /* Картка статті — горизонтальна (фото зліва, текст справа) */
 .blog-card {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 380px 1fr;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -2022,7 +2022,8 @@ a.product-card-detailed {
   transform: translateY(-2px);
 }
 
-/* Фото картки — компактне */
+/* Фото картки — ширину підібрано так, щоб при висоті рядка (180–220px)
+   співвідношення сторін було близьким до заглавного фото статті (1200×630 ≈ 1.9:1) */
 .blog-card-img {
   height: 100%;
   min-height: 180px;
@@ -2120,14 +2121,11 @@ a.product-card-detailed {
   overflow: hidden;
   margin-bottom: 28px;
   background: var(--bg-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-height: 340px;
+  aspect-ratio: 1200 / 630;
 }
 .article-cover img {
   width: 100%;
-  max-height: 340px;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -2313,7 +2311,7 @@ a.product-card-detailed {
    АДАПТИВНІСТЬ БЛОГУ
    ───────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .blog-card { grid-template-columns: 220px 1fr; }
+  .blog-card { grid-template-columns: 300px 1fr; }
   .article-layout { grid-template-columns: 1fr; }
   .article-sidebar { position: static; }
 }
@@ -2321,19 +2319,13 @@ a.product-card-detailed {
   .blog-card {
     grid-template-columns: 1fr;
   }
-  .blog-card-img { min-height: 180px; max-height: 200px; }
   .blog-card-body { padding: 20px 24px 24px; }
   .blog-card-body h3 { font-size: 16px; }
-  .article-cover { max-height: 240px; }
-  .article-cover img { max-height: 240px; }
 }
 @media (max-width: 640px) {
   .blog-page { padding: 48px 0 72px; }
-  .blog-card-img { min-height: 160px; max-height: 180px; }
   .blog-card-body { padding: 16px 18px 20px; }
   .blog-card-body h3 { font-size: 15px; }
-  .article-cover { max-height: 200px; }
-  .article-cover img { max-height: 200px; }
 }
 
 
